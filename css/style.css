@@ -1,0 +1,71 @@
+/* Custom Properties */
+:root {
+
+    /* backgorund colors */
+    --bg-black: rgb(3, 4, 17);
+
+    /* Text colors */
+
+    /* Margin */
+
+    /* Padding */
+
+}
+
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* Utility */
+
+.display-none {
+    display: none;
+}
+
+/* MAIN */
+
+.background-black {
+    background-color: var(--bg-black);
+    background-image: none;
+}
+
+body {
+    position: relative;
+    background-image: url(../img/camera_da\ letto_illuminata.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.white-lamp {
+    position: absolute;
+    right: 30vw;
+    top: -115px;
+    transform: rotate(180deg);
+}
+
+.yellow-lamp {
+    position: absolute;
+    right: 27vw;
+    top: -115px;
+    transform: rotate(180deg);
+}
