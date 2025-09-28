@@ -8,7 +8,7 @@ function generateRandomNumber(min, max) {
 function showGhostRandomly() {
   ghostImg.style.top = generateRandomNumber(1, 680) + "px";
   ghostImg.style.left = generateRandomNumber(1, 1122) + "px";
-  ghostImg.style.transition = "opacity 10s ease-in";
+  ghostImg.style.transition = "opacity 2s ease-in";
   ghostImg.style.opacity = "1";
   ghostCaught = false;
 
@@ -31,8 +31,15 @@ function turnOnLamp() {
     scaredGhosts++;
     numberOfGhostScared.innerText = scaredGhosts;
     ghostCaught = true;
+
+    if (scaredGhosts >= 5) {
+      alert("Hai vinto!");
+      location.reload();
+      return;
+    }
   } else if (ghostOpacity === 0) {
     alert("Hai perso!");
+    location.reload();
     return;
   }
 
@@ -58,5 +65,6 @@ function turnOffLamp() {
 function checkGhostCaught() {
   if (!ghostCaught) {
     alert("Hai perso!");
+    location.reload();
   }
 }
