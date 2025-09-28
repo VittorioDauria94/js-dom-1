@@ -65,7 +65,7 @@ body {
 
 .yellow-lamp {
     position: absolute;
-    right: 27vw;
+    right: 28vw;
     top: -115px;
     transform: rotate(180deg);
 }
