@@ -10,6 +10,9 @@ function showGhostRandomly() {
   ghostImg.style.left = generateRandomNumber(1, 1122) + "px";
   ghostImg.style.transition = "opacity 10s ease-in";
   ghostImg.style.opacity = "1";
+  ghostCaught = false;
+
+  ghostImg.addEventListener("transitionend", checkGhostCaught, { once: true });
 }
 
 function hideGhost() {
@@ -22,6 +25,17 @@ function turnOnLamp() {
   unlitLamp.classList.add("display-none");
   litLamp.classList.add("display-block");
   onOffButton.innerHTML = "On";
+
+  const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
+  if (ghostOpacity > 0 && ghostOpacity < 1) {
+    scaredGhosts++;
+    numberOfGhostScared.innerText = scaredGhosts;
+    ghostCaught = true;
+  } else if (ghostOpacity === 0) {
+    alert("Hai perso!");
+    return;
+  }
+
   hideGhost();
 
   setTimeout(() => {
@@ -39,4 +53,10 @@ function turnOffLamp() {
   unlitLamp.classList.remove("display-none");
   litLamp.classList.remove("display-block");
   onOffButton.innerHTML = "Off";
+}
+
+function checkGhostCaught() {
+  if (!ghostCaught) {
+    alert("Hai perso!");
+  }
 }
