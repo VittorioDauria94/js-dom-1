@@ -40,6 +40,15 @@ a {
     display: block;
 }
 
+.container {
+    position: relative;
+    max-width: 80%;
+    width: 1200px;
+    height: 80vh;
+    border: 2px solid white;
+    margin: 100px auto;
+}
+
 /* MAIN */
 
 .background-black {
@@ -59,25 +68,41 @@ body {
 .white-lamp {
     position: absolute;
     right: 30vw;
-    top: -115px;
+    top: -215px;
     transform: rotate(180deg);
 }
 
 .yellow-lamp {
     position: absolute;
     right: 28vw;
-    top: -115px;
+    top: -215px;
     transform: rotate(180deg);
 }
 
 #on-off-button {
     position: absolute;
     right: 32vw;
-    top: 0px;
+    top: -100px;
     background-color: transparent;
     padding: 92px 77px;
     border: transparent;
     font-size: 25px;
     color: var(--tx-black);
     cursor: pointer;
+}
+
+.ghost-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: auto;
+    opacity: 0;
+}
+
+.ghost_counter {
+    color: red;
+    position: absolute;
+    top: -50px;
+    right: 70px;
 }
