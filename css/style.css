@@ -80,14 +80,32 @@ body {
 
 #on-off-button {
     position: absolute;
-    right: 32vw;
+    right: 33vw;
     top: -100px;
     background-color: transparent;
-    padding: 92px 77px;
-    border: transparent;
+    padding: 85px 50px;
+    border: none;
     font-size: 25px;
-    color: var(--tx-black);
+    font-weight: bold;
+    color: rgba(255, 0, 0, 0.8);
     cursor: pointer;
+    border-radius: 30px;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+    transition: transform 0.2s, text-shadow 0.3s, color 0.3s;
+}
+
+#on-off-button:hover {
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+    transform: scale(1.05);
+}
+
+#on-off-button.on {
+    color: black;
+    text-shadow: 0 0 20px yellow;
+}
+
+#on-off-button:active {
+    transform: scale(0.95);
 }
 
 .ghost-img {

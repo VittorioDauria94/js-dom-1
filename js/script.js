@@ -16,5 +16,9 @@ onOffButton.addEventListener("click", () => {
 });
 
 window.addEventListener("load", () => {
+  alert(
+    "Benvenuto!\n\nRegole del gioco:\n- Il fantasma apparirà lentamente.\n- Clicca sulla lampada prima che il fantasma sia completamente visibile per spaventarlo.\n- Se non clicchi in tempo o se accendi la luce prima che sia apparso, hai perso.\n- Se spaventi 5 fantasmi, vinci!\n\nClicca OK per iniziare."
+  );
+
   showGhostRandomly();
 });

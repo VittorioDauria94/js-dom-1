@@ -8,7 +8,7 @@ function generateRandomNumber(min, max) {
 function showGhostRandomly() {
   ghostImg.style.top = generateRandomNumber(1, 680) + "px";
   ghostImg.style.left = generateRandomNumber(1, 1122) + "px";
-  ghostImg.style.transition = "opacity 2s ease-in";
+  ghostImg.style.transition = "opacity 1s ease-in";
   ghostImg.style.opacity = "1";
   ghostCaught = false;
 
@@ -25,6 +25,7 @@ function turnOnLamp() {
   unlitLamp.classList.add("display-none");
   litLamp.classList.add("display-block");
   onOffButton.innerHTML = "On";
+  onOffButton.classList.add("on");
 
   const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
   if (ghostOpacity > 0 && ghostOpacity < 1) {
@@ -48,7 +49,7 @@ function turnOnLamp() {
   setTimeout(() => {
     turnOffLamp();
 
-    const randomTime = generateRandomNumber(5000, 15000);
+    const randomTime = generateRandomNumber(500, 5000);
     setTimeout(() => {
       showGhostRandomly();
     }, randomTime);
@@ -60,6 +61,7 @@ function turnOffLamp() {
   unlitLamp.classList.remove("display-none");
   litLamp.classList.remove("display-block");
   onOffButton.innerHTML = "Off";
+  onOffButton.classList.remove("on");
 }
 
 function checkGhostCaught() {
