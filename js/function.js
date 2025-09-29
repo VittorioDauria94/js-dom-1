@@ -26,6 +26,7 @@ function turnOnLamp() {
   litLamp.classList.add("display-block");
   onOffButton.innerHTML = "On";
   onOffButton.classList.add("on");
+  isLampOn = true;
 
   const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
   if (ghostOpacity > 0 && ghostOpacity < 1) {
@@ -62,10 +63,11 @@ function turnOffLamp() {
   litLamp.classList.remove("display-block");
   onOffButton.innerHTML = "Off";
   onOffButton.classList.remove("on");
+  isLampOn = false;
 }
 
 function checkGhostCaught() {
-  if (!ghostCaught) {
+  if (!ghostCaught && ghostOpacity === 1) {
     alert("Hai perso!");
     location.reload();
   }

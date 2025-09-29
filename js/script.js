@@ -7,6 +7,8 @@ const numberOfGhostScared = document.querySelector("#counter span");
 let scaredGhosts = parseInt(numberOfGhostScared.innerText);
 let ghostCaught = false;
 let isLampOn = false;
+const introBox = document.getElementById("game-intro");
+const startBtn = document.getElementById("start-btn");
 
 onOffButton.addEventListener("click", () => {
   if (isLampOn) {
@@ -14,13 +16,9 @@ onOffButton.addEventListener("click", () => {
   } else {
     turnOnLamp();
   }
-  isLampOn = !isLampOn;
 });
 
-window.addEventListener("load", () => {
-  alert(
-    "Benvenuto!\n\nRegole del gioco:\n- Il fantasma apparirà lentamente.\n- Clicca sulla lampada prima che il fantasma sia completamente visibile per spaventarlo.\n- Se non clicchi in tempo o se accendi la luce prima che sia apparso, hai perso.\n- Se spaventi 5 fantasmi, vinci!\n\nClicca OK per iniziare."
-  );
-
+startBtn.addEventListener("click", () => {
+  introBox.style.display = "none";
   showGhostRandomly();
 });

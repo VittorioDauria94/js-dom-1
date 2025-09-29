@@ -6,6 +6,11 @@
 
     /* text color */
     --tx-black: rgb(3, 4, 17);
+    --tx-white: white;
+    --tx-red: red;
+    --tx-blood-red: rgba(120, 6, 6, 1);
+    --tx-yellow: yellow;
+
 }
 
 
@@ -87,21 +92,21 @@ body {
     border: none;
     font-size: 25px;
     font-weight: bold;
-    color: rgba(255, 0, 0, 0.8);
+    color: var(--tx-blood-red);
     cursor: pointer;
     border-radius: 30px;
-    text-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+    text-shadow: 0 0 5px rgba(120, 6, 6, 0.6);
     transition: transform 0.2s, text-shadow 0.3s, color 0.3s;
 }
 
 #on-off-button:hover {
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+    text-shadow: 0 0 15px rgba(120, 6, 6, 0.9);
     transform: scale(1.05);
 }
 
 #on-off-button.on {
-    color: black;
-    text-shadow: 0 0 20px yellow;
+    color: var(--tx-black);
+    text-shadow: 0 0 20px var(--tx-yellow);
 }
 
 #on-off-button:active {
@@ -118,8 +123,47 @@ body {
 }
 
 .ghost_counter {
-    color: red;
+    color: var(--tx-red);
     position: absolute;
     top: -50px;
     right: 70px;
+    font-size: 20px;
+}
+
+.window-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, rgba(50, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 80%);
+    color: #ff4444;
+    padding: 20px 30px;
+    border: 2px solid #660000;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Creepster", cursive;
+    z-index: 1000;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+}
+
+#start-btn {
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 18px;
+    font-family: "Creepster", cursive;
+    background: #990000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+#start-btn:hover {
+    background: #cc0000;
+    box-shadow: 0 0 20px rgba(255, 50, 50, 1), 0 0 40px rgba(255, 0, 0, 0.9);
+    transform: scale(1.05);
 }

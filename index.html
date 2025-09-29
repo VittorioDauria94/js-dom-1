@@ -5,10 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lamp away from me</title>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+
+    <!-- stylesheet -->
     <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body id="body" class="background-black">
+    <div id="game-intro" class="window-alert">
+        <p>"Benvenuto! <br><br>Regole del gioco: <br><br>- Il fantasma apparirà lentamente.<br><br>- Clicca sulla
+            lampada prima che
+            il fantasma sia completamente visibile per spaventarlo.<br><br>- Se non clicchi in tempo o se accendi la
+            luce
+            prima che sia apparso, hai perso.<br><br>- Se spaventi 5 fantasmi, vinci!<br><br>Clicca OK per iniziare."
+        </p>
+        <button id="start-btn">Start</button>
+    </div>
     <div class="container">
         <img id="ghost" class="ghost-img" src="./img/ghost.svg" alt="immage of a ghost">
     </div>
