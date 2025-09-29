@@ -6,13 +6,15 @@ const ghostImg = document.getElementById("ghost");
 const numberOfGhostScared = document.querySelector("#counter span");
 let scaredGhosts = parseInt(numberOfGhostScared.innerText);
 let ghostCaught = false;
+let isLampOn = false;
 
 onOffButton.addEventListener("click", () => {
-  if (onOffButton.innerHTML === "Off") {
-    turnOnLamp();
-  } else {
+  if (isLampOn) {
     turnOffLamp();
+  } else {
+    turnOnLamp();
   }
+  isLampOn = !isLampOn;
 });
 
 window.addEventListener("load", () => {
