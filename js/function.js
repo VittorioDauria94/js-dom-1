@@ -35,13 +35,14 @@ function turnOnLamp() {
     ghostCaught = true;
 
     if (scaredGhosts >= 5) {
-      alert("Hai vinto!");
-      location.reload();
+      winAlert.style.display = "block";
+      bodyElem.classList.remove("background-black");
+      hideGhost();
       return;
     }
   } else if (ghostOpacity === 0) {
-    alert("Hai perso!");
-    location.reload();
+    loseAlert.style.display = "block";
+    turnOffLamp();
     return;
   }
 
@@ -68,7 +69,7 @@ function turnOffLamp() {
 
 function checkGhostCaught() {
   if (!ghostCaught && ghostOpacity === 1) {
-    alert("Hai perso!");
-    location.reload();
+    loseAlert.style.display = "block";
+    turnOffLamp();
   }
 }
