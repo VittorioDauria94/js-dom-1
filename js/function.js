@@ -27,6 +27,7 @@ function turnOnLamp() {
   onOffButton.innerHTML = "On";
   onOffButton.classList.add("on");
   isLampOn = true;
+  switchOnVisuals();
 
   const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
   if (ghostOpacity > 0 && ghostOpacity < 1) {
@@ -65,6 +66,7 @@ function turnOffLamp() {
   onOffButton.innerHTML = "Off";
   onOffButton.classList.remove("on");
   isLampOn = false;
+  switchOffVisuals();
 }
 
 function checkGhostCaught() {
@@ -73,4 +75,14 @@ function checkGhostCaught() {
     loseAlert.style.display = "block";
     turnOffLamp();
   }
+}
+
+function switchOnVisuals() {
+  switchContainer.style.background = "#bfa181";
+  slider.style.backgroundColor = "#4caf50";
+}
+
+function switchOffVisuals() {
+  switchContainer.style.background = "#030411ff";
+  slider.style.backgroundColor = "#e63946";
 }

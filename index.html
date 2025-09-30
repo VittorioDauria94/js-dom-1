@@ -19,8 +19,8 @@
 
     <!-- intro window -->
     <div id="game-intro" class="window-alert">
-        <p>"Benvenuto! <br><br>Regole del gioco: <br><br>- Il fantasma apparirà lentamente.<br><br>- Clicca sulla
-            lampada prima che
+        <p>"Benvenuto! <br><br>Regole del gioco: <br><br>- Il fantasma apparirà lentamente.<br><br>- Clicca sul
+            pulsante alla tua sinistra prima che
             il fantasma sia completamente visibile per spaventarlo.<br><br>- Se non clicchi in tempo o se accendi la
             luce
             prima che sia apparso, hai perso.<br><br>- Se spaventi 5 fantasmi, vinci!<br><br>Clicca Start per iniziare."
@@ -49,7 +49,10 @@
     <div class="lamps">
         <img class="white-lamp" src="./img/white_lamp.png" alt="image of an unlit lamp">
         <img class="yellow-lamp display-none" src="./img/yellow_lamp.png" alt="image of a lit lamp">
-        <button id="on-off-button">Off</button>
+        <label class="switch">
+            <input type="checkbox" id="on-off-button">
+            <span class="slider"></span>
+        </label>
     </div>
 
     <!-- ghosts counter -->

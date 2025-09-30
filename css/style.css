@@ -212,3 +212,31 @@ body {
     box-shadow: 0 0 25px rgba(255, 50, 50, 1);
     transform: scale(1.05);
 }
+
+.switch {
+  position: absolute;
+  right: 93vw;
+  top: 322px;
+  display: inline-block;
+  width: 80px;
+  height: 120px;
+  background: var(--bg-black);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 100px;
+  background-color: #b91c1c;
+  border-radius: 10px;
+  transition: 0.3s;
+}

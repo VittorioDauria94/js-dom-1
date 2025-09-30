@@ -13,6 +13,8 @@ const winAlert = document.getElementById("win-alert");
 const loseAlert = document.getElementById("lose-alert");
 const winRestartBtn = document.getElementById("win-restart-btn");
 const loseRestartBtn = document.getElementById("lose-restart-btn");
+const switchContainer = document.querySelector(".switch");
+const slider = document.querySelector(".slider");
 
 onOffButton.addEventListener("click", () => {
   if (isLampOn) {
