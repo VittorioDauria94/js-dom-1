@@ -24,7 +24,10 @@ onOffButton.addEventListener("click", () => {
 
 startBtn.addEventListener("click", () => {
   introBox.style.display = "none";
-  showGhostRandomly();
+  const randomTime = generateRandomNumber(500, 5000);
+  setTimeout(() => {
+    showGhostRandomly();
+  }, randomTime);
 });
 
 winRestartBtn.addEventListener("click", () => {
