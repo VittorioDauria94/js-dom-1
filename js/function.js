@@ -68,6 +68,7 @@ function turnOffLamp() {
 }
 
 function checkGhostCaught() {
+  const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
   if (!ghostCaught && ghostOpacity === 1) {
     loseAlert.style.display = "block";
     turnOffLamp();
