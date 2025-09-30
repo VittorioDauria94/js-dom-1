@@ -38,11 +38,13 @@ function turnOnLamp() {
     if (scaredGhosts >= 5) {
       winAlert.style.display = "block";
       bodyElem.classList.remove("background-black");
+      onOffButton.disabled = true;
       hideGhost();
       return;
     }
   } else if (ghostOpacity === 0) {
     loseAlert.style.display = "block";
+    onOffButton.disabled = true;
     turnOffLamp();
     return;
   }
@@ -73,6 +75,7 @@ function checkGhostCaught() {
   const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
   if (!ghostCaught && ghostOpacity === 1) {
     loseAlert.style.display = "block";
+    onOffButton.disabled = true;
     turnOffLamp();
   }
 }
