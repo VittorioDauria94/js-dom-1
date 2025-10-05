@@ -66,8 +66,10 @@ body {
     background-image: url(../img/camera_da_letto_illuminata.png);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center top;
     background-attachment: fixed;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 .white-lamp {
@@ -82,35 +84,6 @@ body {
     right: 28vw;
     top: -215px;
     transform: rotate(180deg);
-}
-
-#on-off-button {
-    position: absolute;
-    right: 32.5vw;
-    top: -100px;
-    background-color: transparent;
-    padding: 85px 50px;
-    border: none;
-    font-size: 35px;
-    color: var(--tx-blood-red);
-    cursor: pointer;
-    border-radius: 30px;
-    text-shadow: 0 0 5px rgba(120, 6, 6, 0.6);
-    transition: transform 0.2s, text-shadow 0.3s, color 0.3s;
-}
-
-#on-off-button:hover {
-    text-shadow: 0 0 15px rgba(120, 6, 6, 0.9);
-    transform: scale(1.05);
-}
-
-#on-off-button.on {
-    color: var(--tx-black);
-    text-shadow: 0 0 20px var(--tx-yellow);
-}
-
-#on-off-button:active {
-    transform: scale(0.95);
 }
 
 .ghost-img {
@@ -137,12 +110,12 @@ body {
     transform: translate(-50%, -50%);
     background: radial-gradient(circle at center, rgba(50, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 80%);
     color: #ff4444;
-    padding: 20px 30px;
+    padding: 5vh 5vw;
     border: 2px solid #660000;
     border-radius: 10px;
-    max-width: 400px;
+    max-width: 80vw;
     text-align: center;
-    font-size: 18px;
+    font-size: 2vh;
     z-index: 999999;
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
 }
@@ -172,10 +145,10 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.85);
-    padding: 25px 35px;
+    padding: 5vh 5vw;
     border-radius: 10px;
     text-align: center;
-    font-size: 20px;
+    font-size: 2vh;
     z-index: 999999;
     display: none;
     box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
@@ -214,29 +187,182 @@ body {
 }
 
 .switch {
-  position: absolute;
-  right: 93vw;
-  top: 322px;
-  display: inline-block;
-  width: 80px;
-  height: 120px;
-  background: var(--bg-black);
-  border-radius: 12px;
-  cursor: pointer;
+    position: absolute;
+    right: 93vw;
+    top: 265px;
+    display: inline-block;
+    width: 66px;
+    height: 100px;
+    background: var(--bg-black);
+    border-radius: 12px;
+    cursor: pointer;
 }
 
 .switch input {
-  display: none;
+    display: none;
 }
 
 .slider {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 100px;
-  background-color: #b91c1c;
-  border-radius: 10px;
-  transition: 0.3s;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 80%;
+    background-color: #b91c1c;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* -----------------------------
+   MEDIA QUERIES (responsive)
+----------------------------- */
+
+@media (max-width: 1024px) {
+    .container {
+        position: relative;
+        max-width: 90%;
+        height: 60vh;
+        margin: 80px auto;
+    }
+
+    body {
+        background-position: top center;
+    }
+
+    .white-lamp,
+    .yellow-lamp {
+        width: 138px;
+        top: -137px;
+        right: 25vw;
+    }
+
+    .switch {
+        width: 60px;
+        height: 100px;
+        top: 293px;
+        right: 92vw;
+    }
+
+    .slider {
+        width: 50%;
+        height: 80%;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ghost-img {
+        height: 60px;
+    }
+
+    .ghost_counter {
+        font-size: 18px;
+        top: -40px;
+        right: 50px;
+    }
+}
+
+@media (max-width: 902px) {
+
+    body {
+        background-position: top center;
+        background-size: cover;
+    }
+
+    .white-lamp,
+    .yellow-lamp {
+        width: 123px;
+        top: -133px;
+        right: 20vw;
+    }
+
+    .switch {
+        width: 50px;
+        height: 90px;
+        top: 323px;
+        right: 5vw;
+    }
+
+    .slider {
+        width: 50%;
+        height: 80%;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ghost-img {
+        height: 50px;
+    }
+
+    .ghost_counter {
+        font-size: 16px;
+        top: -35px;
+        left: 40px;
+    }
+
+    .window-alert,
+    .game-alert {
+        padding: 4vh 4vw;
+        font-size: 1.8vh;
+    }
+
+    #start-btn,
+    .game-alert button {
+        padding: 1.2vh 1.5vw;
+        font-size: 1.8vh;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body {
+         background-position: top center; 
+        background-size: cover;
+    }
+
+    .white-lamp,
+    .yellow-lamp {
+        width: 91px;
+        top: -118px;
+        right: 15vw;
+    }
+
+    .switch {
+        width: 45px;
+        height: 80px;
+        top: 300px;
+        right: 5vw;
+    }
+
+    .slider {
+        width: 50%;
+        height: 80%;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ghost-img {
+        height: 40px;
+    }
+
+    .ghost_counter {
+        font-size: 14px;
+        top: -50px;
+        left: 20px;
+    }
+
+    .window-alert,
+    .game-alert {
+        padding: 3vh 3vw;
+        font-size: 1.5vh;
+    }
+
+    #start-btn,
+    .game-alert button {
+        padding: 1vh 1vw;
+        font-size: 1.5vh;
+    }
 }
