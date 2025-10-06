@@ -1,25 +1,63 @@
-/* Custom Properties */
+/* ==========================================================
+   ROOT VARIABLES
+========================================================== */
 :root {
 
-    /* backgorund colors */
+    /* === COLORI BASE === */
     --bg-black: rgb(3, 4, 17);
+    --bg-dark: rgba(0, 0, 0, 0.85);
+    --bg-red-dark: #990000;
+    --bg-red-hover: #cc0000;
+    --bg-gold: radial-gradient(circle at center, #fff8a0, #ffd700);
+    --bg-win: radial-gradient(circle at center, #fff8a0, #ffd700);
+    --bg-lose: rgba(0, 0, 0, 0.85);
+    --bg-window: radial-gradient(circle at center, rgba(50, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 80%);
 
-    /* text color */
+    /* === COLORI TESTO === */
     --tx-black: rgb(3, 4, 17);
-    --tx-white: white;
-    --tx-red: red;
+    --tx-white: #ffffff;
+    --tx-red: #ff4444;
     --tx-blood-red: rgba(120, 6, 6, 1);
     --tx-yellow: yellow;
+    --tx-dark: #222;
 
+    /* === COLORI EFFETTI / SHADOW === */
+    --shadow-red: 0 0 25px rgba(255, 0, 0, 0.6);
+    --shadow-red-strong: 0 0 40px rgba(255, 0, 0, 0.9);
+    --shadow-yellow: 0 0 25px #ffd700, 0 0 50px #fff8a0;
+
+    /* === PADDING GLOBALI === */
+    --pad-xs: 0.5vh 0.5vw;
+    --pad-sm: 1vh 1vw;
+    --pad-md: 3vh 3vw;
+    --pad-lg: 5vh 5vw;
+
+    /* === MARGIN GLOBALI === */
+    --margin-sm: 10px;
+    --margin-md: 20px;
+    --margin-lg: 100px;
+
+    /* === BORDER === */
+    --border-red: 2px solid #660000;
+    --border-radius: 10px;
+
+    /* === FONT === */
+    --font-main: "Creepster", cursive;
+
+    /* === DIMENSIONI BUTTONS === */
+    --btn-font-size: 18px;
+    --btn-padding: 10px 25px;
+    --btn-radius: 8px;
 }
 
-
-/* CSS Reset */
+/* ==========================================================
+   CSS RESET
+========================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Creepster", cursive;
+    font-family: var(--font-main);
 }
 
 img {
@@ -35,9 +73,9 @@ a {
     text-decoration: none;
 }
 
-
-/* Utility */
-
+/* ==========================================================
+   UTILITY
+========================================================== */
 .display-none {
     display: none;
 }
@@ -46,21 +84,21 @@ a {
     display: block;
 }
 
+/* ==========================================================
+   CONTAINER
+========================================================== */
 .container {
     position: relative;
     max-width: 80%;
     width: 1200px;
     height: 80vh;
-    margin: 100px auto;
+    margin: var(--margin-lg) auto;
+    z-index: 10;
 }
 
-/* MAIN */
-
-.background-black {
-    background-color: var(--bg-black);
-    background-image: none;
-}
-
+/* ==========================================================
+   MAIN LAYOUT
+========================================================== */
 body {
     position: relative;
     background-image: url(../img/camera_da_letto_illuminata.png);
@@ -72,18 +110,22 @@ body {
     overflow: hidden;
 }
 
-.white-lamp {
+/* ==========================================================
+   OGGETTI DI SCENA
+========================================================== */
+.white-lamp,
+.yellow-lamp {
     position: absolute;
-    right: 30vw;
     top: -215px;
     transform: rotate(180deg);
 }
 
+.white-lamp {
+    right: 30vw;
+}
+
 .yellow-lamp {
-    position: absolute;
     right: 28vw;
-    top: -215px;
-    transform: rotate(180deg);
 }
 
 .ghost-img {
@@ -103,89 +145,101 @@ body {
     font-size: 20px;
 }
 
+/* ==========================================================
+   FINESTRE DI ALERT
+========================================================== */
 .window-alert {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle at center, rgba(50, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 80%);
-    color: #ff4444;
-    padding: 5vh 5vw;
-    border: 2px solid #660000;
-    border-radius: 10px;
+    background: var(--bg-window);
+    color: var(--tx-red);
+    padding: var(--pad-lg);
+    border: var(--border-red);
+    border-radius: var(--border-radius);
     max-width: 80vw;
     text-align: center;
     font-size: 2vh;
     z-index: 999999;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+    box-shadow: var(--shadow-red);
 }
 
+/* ==========================================================
+   PULSANTE START
+========================================================== */
 #start-btn {
-    margin-top: 20px;
-    padding: 10px 25px;
-    font-size: 18px;
-    background: #990000;
-    color: white;
+    margin-top: var(--margin-md);
+    padding: var(--btn-padding);
+    font-size: var(--btn-font-size);
+    background: var(--bg-red-dark);
+    color: var(--tx-white);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--btn-radius);
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.6);
+    box-shadow: var(--shadow-red);
     transition: all 0.3s ease;
 }
 
 #start-btn:hover {
-    background: #cc0000;
-    box-shadow: 0 0 20px rgba(255, 50, 50, 1), 0 0 40px rgba(255, 0, 0, 0.9);
+    background: var(--bg-red-hover);
+    box-shadow: var(--shadow-red-strong);
     transform: scale(1.05);
 }
 
+/* ==========================================================
+   GAME ALERTS
+========================================================== */
 .game-alert {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 5vh 5vw;
-    border-radius: 10px;
+    background-color: var(--bg-dark);
+    padding: var(--pad-lg);
+    border-radius: var(--border-radius);
     text-align: center;
     font-size: 2vh;
     z-index: 999999;
     display: none;
-    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
-    color: #fff;
+    box-shadow: var(--shadow-red);
+    color: var(--tx-white);
 }
 
 .game-alert.win {
-    background: radial-gradient(circle at center, #fff8a0, #ffd700);
-    color: #222;
-    box-shadow: 0 0 25px #ffd700, 0 0 50px #fff8a0;
+    background: var(--bg-win);
+    color: var(--tx-dark);
+    box-shadow: var(--shadow-yellow);
 }
 
 .game-alert.lose {
-    background: rgba(0, 0, 0, 0.85);
-    color: #ff4444;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+    background: var(--bg-lose);
+    color: var(--tx-red);
+    box-shadow: var(--shadow-red);
 }
 
 .game-alert button {
     margin-top: 15px;
-    padding: 10px 25px;
-    font-size: 18px;
+    padding: var(--btn-padding);
+    font-size: var(--btn-font-size);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--btn-radius);
     cursor: pointer;
-    background: #990000;
-    color: white;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    background: var(--bg-red-dark);
+    color: var(--tx-white);
+    box-shadow: var(--shadow-red);
     transition: all 0.3s ease;
 }
 
 .game-alert button:hover {
-    background: #cc0000;
-    box-shadow: 0 0 25px rgba(255, 50, 50, 1);
+    background: var(--bg-red-hover);
+    box-shadow: var(--shadow-red-strong);
     transform: scale(1.05);
 }
 
+/* ==========================================================
+   SWITCH
+========================================================== */
 .switch {
     position: absolute;
     right: 93vw;
@@ -215,19 +269,38 @@ body {
 }
 
 /* -----------------------------
-   MEDIA QUERIES (responsive)
+   OVERLAY PER TRANSIZIONE LUCE
 ----------------------------- */
+#light-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 1);
+    opacity: 1;
+    transition: opacity 1.5s ease;
+    z-index: 1;
+    pointer-events: none;
+}
 
+body.lamp-on #light-overlay {
+    opacity: 0;
+}
+
+.white-lamp,
+.yellow-lamp,
+.ghost-img,
+.switch,
+.ghost_counter {
+    z-index: 10;
+}
+
+/* ==========================================================
+   MEDIA QUERIES
+========================================================== */
 @media (max-width: 1024px) {
     .container {
-        position: relative;
         max-width: 90%;
         height: 60vh;
         margin: 80px auto;
-    }
-
-    body {
-        background-position: top center;
     }
 
     .white-lamp,
@@ -237,38 +310,12 @@ body {
         right: 25vw;
     }
 
-    .switch {
-        width: 60px;
-        height: 100px;
-        top: 293px;
-        right: 92vw;
-    }
-
-    .slider {
-        width: 50%;
-        height: 80%;
-        top: 8%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
     .ghost-img {
         height: 60px;
-    }
-
-    .ghost_counter {
-        font-size: 18px;
-        top: -40px;
-        right: 50px;
     }
 }
 
 @media (max-width: 902px) {
-
-    body {
-        background-position: top center;
-        background-size: cover;
-    }
 
     .white-lamp,
     .yellow-lamp {
@@ -277,50 +324,24 @@ body {
         right: 20vw;
     }
 
-    .switch {
-        width: 50px;
-        height: 90px;
-        top: 323px;
-        right: 5vw;
-    }
-
-    .slider {
-        width: 50%;
-        height: 80%;
-        top: 8%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
     .ghost-img {
         height: 50px;
     }
 
-    .ghost_counter {
-        font-size: 16px;
-        top: -35px;
-        left: 40px;
-    }
-
     .window-alert,
     .game-alert {
-        padding: 4vh 4vw;
+        padding: var(--pad-md);
         font-size: 1.8vh;
     }
 
     #start-btn,
     .game-alert button {
-        padding: 1.2vh 1.5vw;
+        padding: var(--pad-sm);
         font-size: 1.8vh;
     }
 }
 
 @media (max-width: 480px) {
-
-    body {
-         background-position: top center; 
-        background-size: cover;
-    }
 
     .white-lamp,
     .yellow-lamp {
@@ -329,40 +350,19 @@ body {
         right: 15vw;
     }
 
-    .switch {
-        width: 45px;
-        height: 80px;
-        top: 300px;
-        right: 5vw;
-    }
-
-    .slider {
-        width: 50%;
-        height: 80%;
-        top: 8%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
     .ghost-img {
         height: 40px;
     }
 
-    .ghost_counter {
-        font-size: 14px;
-        top: -50px;
-        left: 20px;
-    }
-
     .window-alert,
     .game-alert {
-        padding: 3vh 3vw;
+        padding: var(--pad-sm);
         font-size: 1.5vh;
     }
 
     #start-btn,
     .game-alert button {
-        padding: 1vh 1vw;
+        padding: var(--pad-xs);
         font-size: 1.5vh;
     }
 }

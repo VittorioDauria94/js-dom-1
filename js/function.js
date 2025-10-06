@@ -35,7 +35,9 @@ function hideGhost() {
 function turnOnLamp() {
   if (!gameActive) return;
 
-  bodyElem.classList.remove("background-black");
+  // Fade verso luce
+  document.body.classList.add("lamp-on");
+
   unlitLamp.classList.add("display-none");
   litLamp.classList.add("display-block");
   isLampOn = true;
@@ -68,7 +70,9 @@ function turnOnLamp() {
 
 // Spegni la lampada
 function turnOffLamp() {
-  bodyElem.classList.add("background-black");
+  // Fade verso buio
+  document.body.classList.remove("lamp-on");
+
   unlitLamp.classList.remove("display-none");
   litLamp.classList.remove("display-block");
   isLampOn = false;
