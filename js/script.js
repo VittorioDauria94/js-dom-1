@@ -112,8 +112,18 @@ difficultyButtons.forEach((btn) => {
   });
 });
 
-// Switch click
-onOffButton.addEventListener("click", () => {
+const shouldIgnoreKeyToggle = (event) => {
+  const interactiveTags = ["INPUT", "TEXTAREA", "SELECT", "BUTTON"];
+  const target = event.target;
+
+  return (
+    interactiveTags.includes(target.tagName) ||
+    target.isContentEditable ||
+    target.closest("[contenteditable='true']")
+  );
+};
+
+const toggleLamp = () => {
   if (!gameActive) return;
 
   const now = Date.now();
@@ -128,6 +138,24 @@ onOffButton.addEventListener("click", () => {
   lastClickTime = now;
 
   isLampOn ? turnOffLamp() : turnOnLamp();
+};
+
+// Switch click
+onOffButton.addEventListener("click", toggleLamp);
+
+// Toggle lamp with Backspace key
+document.addEventListener("keydown", (event) => {
+  if (
+    !gameActive ||
+    onOffButton.disabled ||
+    event.key !== "Backspace" ||
+    shouldIgnoreKeyToggle(event)
+  ) {
+    return;
+  }
+
+  event.preventDefault();
+  toggleLamp();
 });
 
 // Start game
