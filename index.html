@@ -50,6 +50,14 @@
 <body id="body">
     <div id="light-overlay"></div>
 
+    <!-- LANGUAGE SELECTOR -->
+    <div id="language-selector">
+        <select id="language-switch">
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="en" selected>🇬🇧 English</option>
+        </select>
+    </div>
+
     <!-- INTRO WINDOW -->
     <div id="game-intro" class="window-alert">
         <p>
@@ -60,10 +68,9 @@
             per spaventarlo.<br /><br />
             - Se non clicchi in tempo o se accendi la luce prima che sia apparso,
             hai perso.<br /><br />
-            - Se spaventi abbastanza fantasmi, vinci!"
+            - Se spaventi abbastanza fantasmi, vinci!"<br /><br />
+        <p>Seleziona la difficoltà:</p>
         </p>
-
-        <p><br />Seleziona la difficoltà:</p>
 
         <div id="difficulty-selection">
             <button data-difficulty="easy">Facile</button>
@@ -144,6 +151,7 @@
     <!-- JavaScript Files -->
     <script src="./js/function.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/lang.js"></script>
 </body>
 
 </html>

@@ -49,3 +49,24 @@ Upgrade your skills in the shop and survive as long as you can!
 - **HTML5** – Structure and markup  
 - **CSS3** – Styling, animations, and responsive design  
 - **JavaScript (ES6)** – Game logic and DOM manipulation  
+
+---
+
+## 🗓️ Version History
+
+### v1.2 — **Full Multilingual Support (IT / EN)**
+**Release date:** 2025-10-12
+
+#### ✨ New Features
+- Added complete **bilingual support** 🇮🇹 / 🇬🇧 (Italian / English).
+- Automatic translation of all game text, including:
+  - **Intro**, **Win**, **Lose**, **Shop**, and **Difficulty** messages.
+  - **Button labels**, **tooltips**, and **ghost counters**.
+  - **“Already purchased”** and **“Buy Extra Life again”** messages in the shop.
+- Language preference saved in **Local Storage** and applied automatically on next visit.
+- Shop buttons and alerts now **refresh dynamically** when changing language.
+
+#### 🛠️ Fixes & Improvements
+- Fixed English text not updating on purchased items (**“✅ Already purchased”**).
+- Unified translation handling via **`lang.js`**.
+- Improved consistency in **`winGame()`** and **`loseGame()`** message logic.

@@ -264,31 +264,44 @@ function winGame() {
   clearTimeout(ghostTimeout);
   onOffButton.disabled = true;
 
-  const totalGhosts = ghostsToWin === Infinity ? "infiniti" : ghostsToWin;
-  winAlert.querySelector(
-    "p"
-  ).innerHTML = `🎉 Hai vinto! 🎉<br>Hai spaventato ${totalGhosts} fantasmi!`;
+  const lang = window.i18n ? window.i18n.getLang() : "it";
+  const t = translations[lang] || translations.it;
 
+  const totalGhosts =
+    ghostsToWin === Infinity
+      ? lang === "it"
+        ? "infiniti"
+        : "infinite"
+      : ghostsToWin;
+
+  const message =
+    lang === "it"
+      ? `🎉 Hai vinto! 🎉<br>Hai spaventato ${totalGhosts} fantasmi!`
+      : `🎉 You won! 🎉<br>You scared ${totalGhosts} ghosts!`;
+
+  winAlert.querySelector("p").innerHTML = message;
   winAlert.style.display = "block";
+
+  if (window.i18n) applyLanguage(lang);
 }
 
 // Player loses
 function loseGame() {
   if (upgradesBought.extraLifeGhost && !extraLifeActive) {
-    extraLifeActive = true; // Consume extra life
-    upgradesBought.extraLifeGhost = false; // Allow to buy again
+    extraLifeActive = true;
+    upgradesBought.extraLifeGhost = false;
 
-    // Resume the game without ending
     hideGhost();
     turnOffLamp();
     const randomTime = generateRandomNumber(500, 5000);
     ghostTimeout = setTimeout(showGhostRandomly, randomTime);
 
-    // Reactivate the "Extra Life" button in the shop
     const lifeBtn = document.getElementById("buy-extraLifeGhost");
     if (lifeBtn) {
       lifeBtn.disabled = false;
-      lifeBtn.innerText = "💚 Riacquista Vita (120 💰)";
+      lifeBtn.innerText = window.i18n
+        ? window.i18n.extraLifeRebuy()
+        : "💚 Riacquista Vita (120 💰)";
       lifeBtn.style.background = "#4caf50";
       lifeBtn.style.cursor = "pointer";
     }
@@ -302,4 +315,6 @@ function loseGame() {
   turnOffLamp();
   hideGhost();
   clearTimeout(ghostTimeout);
+
+  if (window.i18n) applyLanguage(window.i18n.getLang());
 }

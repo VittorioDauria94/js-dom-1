@@ -109,6 +109,27 @@ body {
 }
 
 /* ==========================================================
+   LANGUAGE
+========================================================== */
+
+#language-selector {
+  position: absolute;
+  top: -50px;
+  left: 70px;
+  z-index: 9999;
+}
+
+#language-switch {
+  background: black;
+  color: white;
+  border: 2px solid white;
+  font-family: "Creepster", cursive;
+  font-size: 1rem;
+  padding: 4px 6px;
+  border-radius: 8px;
+}
+
+/* ==========================================================
    OBJECTS IN SCENE
 ========================================================== */
 .white-lamp,

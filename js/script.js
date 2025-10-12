@@ -111,7 +111,9 @@ difficultyButtons.forEach((btn) => {
       ghostsNeeded++;
     }
 
-    ghostsNeededMessage.innerText = `⚡ Fantasmi da spaventare: ${ghostsNeeded}`;
+    ghostsNeededMessage.innerText = window.i18n
+      ? window.i18n.ghostsNeeded(ghostsNeeded)
+      : `⚡ Ghosts to scare: ${ghostsNeeded}`;
     ghostsNeededMessage.classList.remove("hidden");
     ghostsNeededMessage.classList.add("visible");
   });
@@ -223,11 +225,15 @@ function updateShopButtons() {
     { id: "buy-extraLifeGhost", key: "extraLifeGhost" },
   ];
 
+  const lang = window.i18n ? window.i18n.getLang() : "it";
+  const alreadyBoughtText =
+    lang === "it" ? "✅ Già acquistato" : "✅ Already purchased";
+
   buttons.forEach(({ id, key }) => {
     const btn = document.getElementById(id);
     if (upgradesBought[key]) {
       btn.disabled = true;
-      btn.innerText = "✅ Già acquistato";
+      btn.innerText = alreadyBoughtText;
       btn.style.background = "gray";
       btn.style.cursor = "not-allowed";
     }
