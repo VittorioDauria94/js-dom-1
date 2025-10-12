@@ -2,8 +2,7 @@
    ROOT VARIABLES
 ========================================================== */
 :root {
-
-    /* === COLORI BASE === */
+    /* === BASE COLORS === */
     --bg-black: rgb(3, 4, 17);
     --bg-dark: rgba(0, 0, 0, 0.85);
     --bg-red-dark: #990000;
@@ -13,7 +12,7 @@
     --bg-lose: rgba(0, 0, 0, 0.85);
     --bg-window: radial-gradient(circle at center, rgba(50, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 80%);
 
-    /* === COLORI TESTO === */
+    /* === TEXT COLORS === */
     --tx-black: rgb(3, 4, 17);
     --tx-white: #ffffff;
     --tx-red: #ff4444;
@@ -21,18 +20,17 @@
     --tx-yellow: yellow;
     --tx-dark: #222;
 
-    /* === COLORI EFFETTI / SHADOW === */
+    /* === SHADOW COLORS === */
     --shadow-red: 0 0 25px rgba(255, 0, 0, 0.6);
     --shadow-red-strong: 0 0 40px rgba(255, 0, 0, 0.9);
     --shadow-yellow: 0 0 25px #ffd700, 0 0 50px #fff8a0;
 
-    /* === PADDING GLOBALI === */
+    /* === SPACING === */
     --pad-xs: 0.5vh 0.5vw;
     --pad-sm: 1vh 1vw;
     --pad-md: 3vh 3vw;
     --pad-lg: 5vh 5vw;
 
-    /* === MARGIN GLOBALI === */
     --margin-sm: 10px;
     --margin-md: 20px;
     --margin-lg: 100px;
@@ -44,7 +42,7 @@
     /* === FONT === */
     --font-main: "Creepster", cursive;
 
-    /* === DIMENSIONI BUTTONS === */
+    /* === BUTTON DIMENSIONS === */
     --btn-font-size: 18px;
     --btn-padding: 10px 25px;
     --btn-radius: 8px;
@@ -74,7 +72,7 @@ a {
 }
 
 /* ==========================================================
-   UTILITY
+   UTILITY CLASSES
 ========================================================== */
 .display-none {
     display: none;
@@ -85,7 +83,7 @@ a {
 }
 
 /* ==========================================================
-   CONTAINER
+   MAIN CONTAINER
 ========================================================== */
 .container {
     position: relative;
@@ -111,7 +109,7 @@ body {
 }
 
 /* ==========================================================
-   OGGETTI DI SCENA
+   OBJECTS IN SCENE
 ========================================================== */
 .white-lamp,
 .yellow-lamp {
@@ -147,7 +145,7 @@ body {
 }
 
 /* ==========================================================
-   FINESTRE DI ALERT
+   ALERT WINDOWS (INTRO / WIN / LOSE)
 ========================================================== */
 .window-alert {
     position: fixed;
@@ -167,7 +165,7 @@ body {
 }
 
 /* ==========================================================
-   PULSANTE START
+   START BUTTON
 ========================================================== */
 #start-btn {
     margin-top: var(--margin-md);
@@ -189,7 +187,7 @@ body {
 }
 
 /* ==========================================================
-   GAME ALERTS
+   GAME ALERTS (WIN / LOSE)
 ========================================================== */
 .game-alert {
     position: fixed;
@@ -241,7 +239,6 @@ body {
 /* ==========================================================
    DIFFICULTY SELECTION
 ========================================================== */
-
 #difficulty-selection {
     display: flex;
     justify-content: center;
@@ -275,6 +272,30 @@ body {
     transform: scale(1.1);
 }
 
+/* Tooltip showing number of ghosts required */
+#ghosts-needed-message {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    color: gold;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+#ghosts-needed-message.visible {
+    opacity: 1;
+}
+
+#ghosts-needed-message.hidden {
+    opacity: 0;
+}
+
+/* Difficulty increase message */
 #difficulty-message {
     position: fixed;
     top: 50%;
@@ -304,30 +325,8 @@ body {
     transform: translate(-50%, -50%) translateY(0);
 }
 
-#ghosts-needed-message {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 0.5rem;
-    color: gold;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 1000;
-}
-
-#ghosts-needed-message.visible {
-    opacity: 1;
-}
-
-#ghosts-needed-message.hidden {
-    opacity: 0;
-}
-
 /* ==========================================================
-   SWITCH
+   SWITCH (Lamp button)
 ========================================================== */
 .switch {
     position: absolute;
@@ -357,9 +356,9 @@ body {
     transition: 0.3s;
 }
 
-/* -----------------------------
-   OVERLAY PER TRANSIZIONE LUCE
------------------------------ */
+/* ==========================================================
+   LIGHT OVERLAY EFFECT
+========================================================== */
 #light-overlay {
     position: fixed;
     inset: 0;
@@ -381,9 +380,9 @@ body.lamp-on #light-overlay {
     z-index: 10;
 }
 
-/* -----------------------------
-   SHOP
------------------------------ */
+/* ==========================================================
+   SHOP BUTTON & WINDOW
+========================================================== */
 .shop-toggle {
     position: fixed;
     top: 100px;
@@ -404,9 +403,7 @@ body.lamp-on #light-overlay {
     transform: scale(1.1);
 }
 
-/* -----------------------------
-   SHOP BUTTONS
------------------------------ */
+/* Shop buttons container */
 .shop-buttons {
     display: flex;
     flex-direction: column;
@@ -433,7 +430,7 @@ body.lamp-on #light-overlay {
 }
 
 /* ==========================================================
-   MEDIA QUERIES
+   RESPONSIVE MEDIA QUERIES
 ========================================================== */
 @media (max-width: 1024px) {
     .container {

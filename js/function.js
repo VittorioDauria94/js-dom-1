@@ -1,13 +1,13 @@
-// ---------------------------
-// FUNZIONI UTILI
-// ---------------------------
+// ==========================================================
+// UTILITY FUNCTIONS
+// ==========================================================
 
-// Genera numero casuale tra min e max
+// Generate random number between min and max
 function generateRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Scegli la difficoltà
+// Set game difficulty parameters
 function setDifficultyParameters() {
   if (difficulty === "infinite") {
     if (scaredGhosts < 5) {
@@ -44,35 +44,39 @@ function setDifficultyParameters() {
         ghostsToWin = 15;
         break;
     }
+
+    // Apply upgrade "Extra Ghost"
+    if (upgradesBought.extraGhost) {
+      ghostsToWin += 1;
+    }
   }
 }
 
-// Mostra il fantasma in posizione casuale
+// Show ghost at random position
 function showGhostRandomly() {
   clearTimeout(ghostTimeout);
   if (!gameActive) return;
 
-  // Determina se è Lucky Ghost
-  isLuckyGhost = upgradesBought.luckyGhost && Math.random() < 0.1; // 10% possibilità
+  // Determine if Lucky Ghost appears
+  isLuckyGhost = upgradesBought.luckyGhost && Math.random() < 0.1;
   ghostImg.src = isLuckyGhost ? "./img/golden_ghost.svg" : "./img/ghost.svg";
 
-  // Posizione casuale del fantasma
+  // Random position inside container
   const container = ghostImg.parentElement;
   const maxTop = container.clientHeight - ghostImg.offsetHeight;
   const maxLeft = container.clientWidth - ghostImg.offsetWidth;
   ghostImg.style.top = generateRandomNumber(0, maxTop) + "px";
   ghostImg.style.left = generateRandomNumber(0, maxLeft) + "px";
 
-  // Fade-in
+  // Fade in
   ghostImg.style.transition = `opacity ${ghostFadeTime / 1000}s ease-in`;
   ghostImg.style.opacity = "1";
-
   ghostCaught = false;
 
-  // Controlla cattura fantasma
+  // Check if ghost was caught after fade-in
   ghostImg.addEventListener("transitionend", checkGhostCaught, { once: true });
 
-  // Nascondi automaticamente dopo ghostVisibleTime
+  // Hide ghost after visible time
   if (ghostVisibleTime !== Infinity) {
     ghostTimeout = setTimeout(() => {
       hideGhost();
@@ -82,19 +86,18 @@ function showGhostRandomly() {
   }
 }
 
-// Nasconde il fantasma
+// Hide ghost
 function hideGhost() {
   ghostImg.style.transition = `opacity ${ghostFadeTime / 1000}s ease-out`;
   ghostImg.style.opacity = "0";
 }
 
-// Accendi la lampada
+// Turn on the lamp
 function turnOnLamp() {
   if (!gameActive) return;
-
   clearTimeout(ghostTimeout);
 
-  // Accendi lampada
+  // Visual lamp on
   document.body.classList.add("lamp-on");
   unlitLamp.classList.add("display-none");
   litLamp.classList.add("display-block");
@@ -104,36 +107,36 @@ function turnOnLamp() {
   const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
 
   if (ghostOpacity > 0) {
-    // Fantasma catturato
+    // Ghost caught
     scaredGhosts++;
     numberOfGhostScared.innerText = scaredGhosts;
     ghostCaught = true;
 
-    // Guadagno base + Lucky Ghost
+    // Base reward + Lucky Ghost bonus
     money += 10;
     if (isLuckyGhost) money += 50;
     updateMoneyDisplay();
 
-    // Controlla difficoltà infinita
+    // Increase difficulty for infinite mode
     if (difficulty === "infinite" && scaredGhosts % 5 === 0) {
       increaseInfiniteDifficulty();
       showDifficultyMessage();
     }
 
-    // Controlla vittoria
+    // Check win condition
     if (scaredGhosts >= ghostsToWin && ghostsToWin !== Infinity) {
       winGame();
       return;
     }
   } else {
-    // Nessun fantasma → sconfitta
+    // No ghost visible → lose
     loseGame();
     return;
   }
 
   hideGhost();
 
-  // Prossimo fantasma
+  // Next ghost spawn
   ghostTimeout = setTimeout(() => {
     turnOffLamp();
     const randomTime = generateRandomNumber(500, 5000);
@@ -141,7 +144,7 @@ function turnOnLamp() {
   }, ghostVisibleTime);
 }
 
-// Spegni la lampada
+// Turn off the lamp
 function turnOffLamp() {
   document.body.classList.remove("lamp-on");
   unlitLamp.classList.remove("display-none");
@@ -151,7 +154,7 @@ function turnOffLamp() {
   hideDifficultyMessage();
 }
 
-// Controlla se il fantasma è stato catturato
+// Check if ghost was caught
 function checkGhostCaught() {
   const ghostOpacity = parseFloat(window.getComputedStyle(ghostImg).opacity);
   if (!ghostCaught && ghostOpacity === 1) {
@@ -159,22 +162,22 @@ function checkGhostCaught() {
   }
 }
 
-// Aggiorna lo stile dello switch quando acceso
+// Lamp visual ON
 function switchOnVisuals() {
   switchContainer.style.background = "#bfa181";
   slider.style.backgroundColor = "#4caf50";
 }
 
-// Aggiorna lo stile dello switch quando spento
+// Lamp visual OFF
 function switchOffVisuals() {
   switchContainer.style.background = "#030411ff";
   slider.style.backgroundColor = "#e63946";
 }
 
-// Mostra un messaggio temporaneo quando la difficoltà aumenta (solo se luce accesa)
+// Show temporary message when difficulty increases
 function showDifficultyMessage() {
   const msg = document.getElementById("difficulty-message");
-  if (!isLampOn) return; // mostralo solo se la luce è accesa
+  if (!isLampOn) return;
 
   msg.classList.remove("hidden");
   msg.classList.add("visible");
@@ -186,32 +189,37 @@ function showDifficultyMessage() {
   }, 2500);
 }
 
-// Nasconde il messaggio quando spegni la luce
+// Hide difficulty message
 function hideDifficultyMessage() {
   const msg = document.getElementById("difficulty-message");
   msg.classList.remove("visible");
   msg.classList.add("hidden");
 }
 
+// Gradually increase infinite mode difficulty
 function increaseInfiniteDifficulty() {
   if (ghostFadeTime > 400) ghostFadeTime -= 100;
   if (ghostVisibleTime > 2000) ghostVisibleTime -= 500;
 }
 
+// Update shop money display
 function updateMoneyDisplay() {
   const moneyDisplay = document.getElementById("money-display");
   moneyDisplay.innerText = `💰 ${money}`;
   localStorage.setItem("money", money);
 }
 
-// ---------------------------
-// FUNZIONI DI FINE GIOCO
-// ---------------------------
+// ==========================================================
+// GAME END FUNCTIONS
+// ==========================================================
+
+// Save current game state
 function saveGameState() {
   localStorage.setItem("money", money);
   localStorage.setItem("upgradesBought", JSON.stringify(upgradesBought));
 }
 
+// Load saved game state
 function loadGameState() {
   const savedMoney = localStorage.getItem("money");
   const savedUpgrades = localStorage.getItem("upgradesBought");
@@ -222,49 +230,69 @@ function loadGameState() {
   updateMoneyDisplay();
 }
 
+// Restart the game
 function restartGame() {
-  // Nascondi win/lose alert
+  // Hide win/lose alerts
   winAlert.style.display = "none";
   loseAlert.style.display = "none";
 
-  // Mostra l'intro box
+  // Make sure lamp is turned off
+  turnOffLamp();
+
+  // Show intro window
   introBox.style.display = "block";
 
-  // Reset variabili di gioco principali
+  // Reset main game variables
   scaredGhosts = 0;
   numberOfGhostScared.innerText = scaredGhosts;
   gameActive = false;
   isLampOn = false;
   onOffButton.disabled = true;
-  extraLifeActive = false; // reset extra life
+  extraLifeActive = false;
 
-  // Nascondi il fantasma
+  // Hide ghost
   hideGhost();
 
-  // Ripristina upgrade applicati
-  if (upgradesBought.fasterLamp) ghostFadeTime *= 0.8;
-  if (upgradesBought.extraGhost) ghostsToWin += 1;
-
-  // Aggiorna display soldi e eventuali upgrade
+  // Update money and upgrades
   updateMoneyDisplay();
 }
 
+// Player wins
 function winGame() {
   gameActive = false;
-  winAlert.style.display = "block";
-  onOffButton.disabled = true;
   hideGhost();
   clearTimeout(ghostTimeout);
+  onOffButton.disabled = true;
+
+  const totalGhosts = ghostsToWin === Infinity ? "infiniti" : ghostsToWin;
+  winAlert.querySelector(
+    "p"
+  ).innerHTML = `🎉 Hai vinto! 🎉<br>Hai spaventato ${totalGhosts} fantasmi!`;
+
+  winAlert.style.display = "block";
 }
 
+// Player loses
 function loseGame() {
   if (upgradesBought.extraLifeGhost && !extraLifeActive) {
-    extraLifeActive = true; // consuma extra life
-    // riprendi il gioco senza fine
+    extraLifeActive = true; // Consume extra life
+    upgradesBought.extraLifeGhost = false; // Allow to buy again
+
+    // Resume the game without ending
     hideGhost();
     turnOffLamp();
     const randomTime = generateRandomNumber(500, 5000);
     ghostTimeout = setTimeout(showGhostRandomly, randomTime);
+
+    // Reactivate the "Extra Life" button in the shop
+    const lifeBtn = document.getElementById("buy-extraLifeGhost");
+    if (lifeBtn) {
+      lifeBtn.disabled = false;
+      lifeBtn.innerText = "💚 Riacquista Vita (120 💰)";
+      lifeBtn.style.background = "#4caf50";
+      lifeBtn.style.cursor = "pointer";
+    }
+
     return;
   }
 

@@ -1,99 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lamp away from me</title>
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lamp away</title>
 
-    <!-- stylesheet -->
-    <link rel="stylesheet" href="./css/style.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet" />
 
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
 
-<body id="body" class="">
+<body id="body">
     <div id="light-overlay"></div>
 
-    <!-- intro window -->
+    <!-- INTRO WINDOW -->
     <div id="game-intro" class="window-alert">
-        <p>"Benvenuto! <br><br>Regole del gioco: <br><br>- Il fantasma apparirà lentamente.<br><br>- Clicca
-            l'interruttore prima che
-            il fantasma sia completamente visibile per spaventarlo.<br><br>- Se non clicchi in tempo o se accendi la
-            luce
-            prima che sia apparso, hai perso.<br><br>- Se spaventi abbastanza fantasmi, vinci!"
+        <p>
+            "Benvenuto! <br /><br />
+            Regole del gioco: <br /><br />
+            - Il fantasma apparirà lentamente.<br /><br />
+            - Clicca l'interruttore prima che il fantasma sia completamente visibile
+            per spaventarlo.<br /><br />
+            - Se non clicchi in tempo o se accendi la luce prima che sia apparso,
+            hai perso.<br /><br />
+            - Se spaventi abbastanza fantasmi, vinci!"
         </p>
-        <p><br>Seleziona la difficoltà:</p>
+
+        <p><br />Seleziona la difficoltà:</p>
+
         <div id="difficulty-selection">
             <button data-difficulty="easy">Facile</button>
             <button data-difficulty="medium">Medio</button>
             <button data-difficulty="hard">Difficile</button>
             <button data-difficulty="infinite">Infinita</button>
-            <p id="ghosts-needed-message" class="hidden">⚡ Fantasmi da spaventare: 0</p>
-            <p id="difficulty-warning" class="text-warning" style="display:none; text-align:center;">
+            <p id="ghosts-needed-message" class="hidden">
+                ⚡ Fantasmi da spaventare: 0
+            </p>
+            <p id="difficulty-warning" class="text-warning" style="display: none; text-align: center">
                 ⚠️ Seleziona una difficoltà prima di iniziare!
             </p>
         </div>
+
         <p>"Clicca Start per iniziare."</p>
         <button id="start-btn">Start</button>
     </div>
 
-    <!-- win window -->
+    <!-- WIN WINDOW -->
     <div class="game-alert win" id="win-alert">
-        <p>🎉 Hai vinto! 🎉<br>Hai spaventato tutti i fantasmi!</p>
+        <p>🎉 Hai vinto! 🎉<br />Hai spaventato tutti i fantasmi!</p>
         <button id="win-restart-btn">Restart</button>
     </div>
 
-    <!-- lose window -->
+    <!-- LOSE WINDOW -->
     <div class="game-alert lose" id="lose-alert">
-        <p>👻 Hai perso! 👻<br>Riprova e cerca di spaventare i fantasmi in tempo!</p>
+        <p>
+            👻 Hai perso! 👻<br />Riprova e cerca di spaventare i fantasmi in
+            tempo!
+        </p>
         <button id="lose-restart-btn">Restart</button>
     </div>
 
-    <!-- shop window -->
-    <div class="game-alert shop" id="shop-alert" style="display:none;">
-        <h3>🏪 Shop</h3>
+    <!-- SHOP WINDOW -->
+    <div class="game-alert shop" id="shop-alert" style="display: none">
+        <h3>🏪 Negozio</h3>
         <p id="money-display">💰 0</p>
+
         <div class="shop-buttons">
-            <button id="buy-slowerGhost">Slower Ghost Apparition (50 💰)</button>
-            <button id="buy-extraGhost">Extra Ghost (100 💰)</button>
-            <button id="buy-doubleClickBonus">Double Click on lamp +5 coin (75 💰)</button>
-            <button id="buy-luckyGhost">Random Golden Ghost (150 💰)</button>
-            <button id="buy-extraLifeGhost">Extra Life (120 💰)</button>
+            <button id="buy-slowerGhost">Fantasma più lento (50 💰)</button>
+            <button id="buy-extraGhost">Fantasma extra (100 💰)</button>
+            <button id="buy-doubleClickBonus">
+                Doppio click +5 monete (75 💰)
+            </button>
+            <button id="buy-luckyGhost">Fantasma dorato casuale (150 💰)</button>
+            <button id="buy-extraLifeGhost">Vita extra (120 💰)</button>
         </div>
-        <button id="close-shop-btn">Chiudi Shop</button>
+
+        <button id="close-shop-btn">Chiudi negozio</button>
     </div>
 
-    <!-- ghost container -->
+    <!-- GHOST CONTAINER -->
     <div class="container">
-        <img id="ghost" class="ghost-img" src="./img/ghost.svg" alt="image of a ghost">
-        <img id="golden-ghost" class="ghost-img golden-ghost display-none" src="./img/golden-ghost.svg"
-            alt="Golden Ghost">
+        <img id="ghost" class="ghost-img" src="./img/ghost.svg" alt="Immagine di un fantasma" />
+        <img id="golden-ghost" class="ghost-img golden-ghost display-none" src="./img/golden_ghost.svg"
+            alt="Fantasma dorato" />
     </div>
 
-    <!-- lamps -->
+    <!-- LAMPS -->
     <div class="lamps">
-        <img class="white-lamp" src="./img/white_lamp.png" alt="image of an unlit lamp">
-        <img class="yellow-lamp display-none" src="./img/yellow_lamp.png" alt="image of a lit lamp">
+        <img class="white-lamp" src="./img/white_lamp.png" alt="Lampada spenta" />
+        <img class="yellow-lamp display-none" src="./img/yellow_lamp.png" alt="Lampada accesa" />
         <label class="switch">
-            <input type="checkbox" id="on-off-button">
+            <input type="checkbox" id="on-off-button" />
             <span class="slider"></span>
         </label>
     </div>
 
-    <!-- ghosts counter -->
-    <span id="counter" class="ghost_counter">Scared Ghosts <span>0</span></span>
+    <!-- GHOST COUNTER -->
+    <span id="counter" class="ghost_counter">Fantasmi spaventati <span>0</span></span>
 
-    <!-- shop button -->
-    <button id="open-shop-btn" class="shop-toggle">Shop 🏪</button>
+    <!-- SHOP BUTTON -->
+    <button id="open-shop-btn" class="shop-toggle">Negozio 🏪</button>
 
-    <!-- infinite difficulty window -->
+    <!-- INFINITE DIFFICULTY MESSAGE -->
     <p id="difficulty-message" class="hidden">⚡ Difficoltà aumentata!</p>
 
-    <!-- javascript -->
+    <!-- JavaScript Files -->
     <script src="./js/function.js"></script>
     <script src="./js/script.js"></script>
 </body>

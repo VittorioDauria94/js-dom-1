@@ -1,6 +1,6 @@
-// ---------------------------
-// ELEMENTI HTML
-// ---------------------------
+// ==========================================================
+// HTML ELEMENTS
+// ==========================================================
 const doubleClickThreshold = 300;
 const bodyElem = document.getElementById("body");
 const unlitLamp = document.querySelector(".white-lamp");
@@ -27,9 +27,9 @@ const closeShopBtn = document.getElementById("close-shop-btn");
 const openShopBtn = document.getElementById("open-shop-btn");
 const goldenGhost = document.getElementById("golden-ghost");
 
-// ---------------------------
-// VARIABILI STATO
-// ---------------------------
+// ==========================================================
+// GAME STATE VARIABLES
+// ==========================================================
 let money = parseInt(localStorage.getItem("money")) || 0;
 let lastClickTime = 0;
 let extraLifeActive = false;
@@ -44,6 +44,7 @@ let ghostFadeTime = 1000;
 let ghostVisibleTime = 5000;
 let ghostsToWin = 5;
 let msgTimeout;
+
 let upgradeCost = {
   slowerGhost: 50,
   extraGhost: 100,
@@ -51,6 +52,7 @@ let upgradeCost = {
   luckyGhost: 150,
   extraLifeGhost: 120,
 };
+
 let upgradesBought = {
   slowerGhost: false,
   extraGhost: false,
@@ -59,34 +61,36 @@ let upgradesBought = {
   extraLifeGhost: false,
 };
 
-// ---------------------------
+// ==========================================================
 // EVENT LISTENERS
-// ---------------------------
+// ==========================================================
 
+// Load saved data when the page is ready
 window.addEventListener("load", () => {
   loadGameState();
 });
 
-// Selezione difficoltà
+// Difficulty selection
 difficultyButtons.forEach((btn) => {
-  // CLICK: selezione difficoltà
+  // Click → select difficulty
   btn.addEventListener("click", () => {
     difficulty = btn.dataset.difficulty;
 
-    // evidenzia bottone selezionato
+    // Highlight selected button
     difficultyButtons.forEach((b) => b.classList.remove("selected"));
     btn.classList.add("selected");
 
-    // abilita il pulsante Start quando una difficoltà è selezionata
+    // Enable the Start button
     startBtn.disabled = false;
 
-    // nascondi messaggio di warning se presente
+    // Hide warning if visible
     if (warning) warning.style.display = "none";
   });
 
-  // HOVER: mostra quanti fantasmi servono
+  // Hover → show ghosts needed to win
   btn.addEventListener("mouseover", () => {
     let ghostsNeeded = 0;
+
     switch (btn.dataset.difficulty) {
       case "easy":
         ghostsNeeded = 5;
@@ -101,18 +105,25 @@ difficultyButtons.forEach((btn) => {
         ghostsNeeded = "∞";
         break;
     }
+
+    // Add one more ghost if Extra Ghost upgrade is active
+    if (btn.dataset.difficulty !== "infinite" && upgradesBought.extraGhost) {
+      ghostsNeeded++;
+    }
+
     ghostsNeededMessage.innerText = `⚡ Fantasmi da spaventare: ${ghostsNeeded}`;
     ghostsNeededMessage.classList.remove("hidden");
     ghostsNeededMessage.classList.add("visible");
   });
 
+  // Hide tooltip on mouse leave
   btn.addEventListener("mouseout", () => {
     ghostsNeededMessage.classList.remove("visible");
     ghostsNeededMessage.classList.add("hidden");
   });
 });
 
-// Switch click
+// Lamp switch click
 onOffButton.addEventListener("click", () => {
   if (!gameActive) return;
 
@@ -121,7 +132,7 @@ onOffButton.addEventListener("click", () => {
     upgradesBought.doubleClickBonus &&
     now - lastClickTime < doubleClickThreshold
   ) {
-    // doppio click riconosciuto
+    // Double-click detected → +5 coins
     money += 5;
     updateMoneyDisplay();
   }
@@ -163,32 +174,89 @@ loseRestartBtn.addEventListener("click", () => {
   restartGame();
 });
 
-// Shop
+// Spacebar → also toggle the lamp
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Space" && gameActive && !onOffButton.disabled) {
+    event.preventDefault(); // prevent scroll
+    const now = Date.now();
+
+    if (
+      upgradesBought.doubleClickBonus &&
+      now - lastClickTime < doubleClickThreshold
+    ) {
+      money += 5;
+      updateMoneyDisplay();
+    }
+
+    lastClickTime = now;
+    isLampOn ? turnOffLamp() : turnOnLamp();
+  }
+});
+
+// ==========================================================
+// SHOP SYSTEM
+// ==========================================================
+
+// Open the shop
+openShopBtn.addEventListener("click", () => {
+  shopAlert.style.display = "block";
+  onOffButton.disabled = true; // block lamp during shop
+});
+
+// Close the shop
+closeShopBtn.addEventListener("click", () => {
+  shopAlert.style.display = "none";
+  onOffButton.disabled = false; // enable lamp again
+});
+
+// ==========================================================
+// SHOP UPGRADES
+// ==========================================================
+
+// Update visual state of shop buttons
+function updateShopButtons() {
+  const buttons = [
+    { id: "buy-slowerGhost", key: "slowerGhost" },
+    { id: "buy-extraGhost", key: "extraGhost" },
+    { id: "buy-doubleClickBonus", key: "doubleClickBonus" },
+    { id: "buy-luckyGhost", key: "luckyGhost" },
+    { id: "buy-extraLifeGhost", key: "extraLifeGhost" },
+  ];
+
+  buttons.forEach(({ id, key }) => {
+    const btn = document.getElementById(id);
+    if (upgradesBought[key]) {
+      btn.disabled = true;
+      btn.innerText = "✅ Già acquistato";
+      btn.style.background = "gray";
+      btn.style.cursor = "not-allowed";
+    }
+  });
+}
+
+// --- Upgrade: Slower Ghost ---
 document.getElementById("buy-slowerGhost").addEventListener("click", () => {
   if (money >= upgradeCost.slowerGhost && !upgradesBought.slowerGhost) {
     money -= upgradeCost.slowerGhost;
     upgradesBought.slowerGhost = true;
-
-    // BONUS: i fantasmi restano visibili più a lungo
-    ghostVisibleTime *= 1.3;
-
+    ghostVisibleTime *= 1.3; // Ghost stays longer
     updateMoneyDisplay();
-  } else {
-    alert("Monete insufficienti o già acquistato!");
+    updateShopButtons();
   }
 });
 
+// --- Upgrade: Extra Ghost ---
 document.getElementById("buy-extraGhost").addEventListener("click", () => {
   if (money >= upgradeCost.extraGhost && !upgradesBought.extraGhost) {
     money -= upgradeCost.extraGhost;
     upgradesBought.extraGhost = true;
-    ghostsToWin += 1;
+    ghostsToWin += 1; // One more ghost required to win
     updateMoneyDisplay();
-  } else {
-    alert("Monete insufficienti o già acquistato!");
+    updateShopButtons();
   }
 });
 
+// --- Upgrade: Double Click Bonus ---
 document
   .getElementById("buy-doubleClickBonus")
   ?.addEventListener("click", () => {
@@ -199,31 +267,36 @@ document
       money -= upgradeCost.doubleClickBonus;
       upgradesBought.doubleClickBonus = true;
       updateMoneyDisplay();
+      updateShopButtons();
     }
   });
 
+// --- Upgrade: Lucky Ghost ---
 document.getElementById("buy-luckyGhost")?.addEventListener("click", () => {
   if (money >= upgradeCost.luckyGhost && !upgradesBought.luckyGhost) {
     money -= upgradeCost.luckyGhost;
     upgradesBought.luckyGhost = true;
     updateMoneyDisplay();
+    updateShopButtons();
   }
 });
 
+// --- Upgrade: Extra Life Ghost ---
 document.getElementById("buy-extraLifeGhost")?.addEventListener("click", () => {
-  if (money >= upgradeCost.extraLifeGhost && !upgradesBought.extraLifeGhost) {
+  if (money >= upgradeCost.extraLifeGhost) {
+    // Can buy again if used previously
     money -= upgradeCost.extraLifeGhost;
     upgradesBought.extraLifeGhost = true;
+    extraLifeActive = false; // Reset life to be usable
     updateMoneyDisplay();
+
+    const btn = document.getElementById("buy-extraLifeGhost");
+    btn.disabled = true;
+    btn.innerText = "✅ Vita pronta!";
+    btn.style.background = "gray";
+    btn.style.cursor = "not-allowed";
   }
 });
 
-openShopBtn.addEventListener("click", () => {
-  shopAlert.style.display = "block";
-  onOffButton.disabled = true; // blocca la lampada mentre shop aperto
-});
-
-closeShopBtn.addEventListener("click", () => {
-  shopAlert.style.display = "none";
-  onOffButton.disabled = false; // riabilita lampada
-});
+// Refresh shop button state when page loads
+window.addEventListener("load", updateShopButtons);
