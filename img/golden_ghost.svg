@@ -1,0 +1,5 @@
+<svg id="golden-ghost" class="ghost-img golden-ghost" width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <path d="M32 0C20 0 12 8 12 20v28l8-8 4 4 4-4 4 4 8-8V20c0-12-8-20-20-20z" fill="gold" stroke="orange" stroke-width="2"/>
+  <circle cx="22" cy="22" r="4" fill="#fff"/>
+  <circle cx="42" cy="22" r="4" fill="#fff"/>
+</svg>

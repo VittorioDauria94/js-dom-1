@@ -135,6 +135,7 @@ body {
     height: 80px;
     width: auto;
     opacity: 0;
+    z-index: 15;
 }
 
 .ghost_counter {
@@ -238,6 +239,94 @@ body {
 }
 
 /* ==========================================================
+   DIFFICULTY SELECTION
+========================================================== */
+
+#difficulty-selection {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#difficulty-selection button {
+    padding: var(--btn-padding);
+    font-size: var(--btn-font-size);
+    background: var(--bg-red-dark);
+    color: var(--tx-white);
+    border: none;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    box-shadow: var(--shadow-red);
+    transition: all 0.3s ease;
+}
+
+#difficulty-selection button:hover {
+    background: var(--bg-red-hover);
+    box-shadow: var(--shadow-red-strong);
+    transform: scale(1.05);
+}
+
+#difficulty-selection button.selected {
+    background: #ffd700;
+    color: var(--tx-dark);
+    box-shadow: var(--shadow-yellow);
+    transform: scale(1.1);
+}
+
+#difficulty-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: gold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    background: rgba(0, 0, 0, 0.6);
+    text-shadow: 0 0 1px gold, 0 0 2px gold;
+}
+
+#difficulty-message.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(-20px);
+}
+
+#difficulty-message.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(0);
+}
+
+#ghosts-needed-message {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    color: gold;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+#ghosts-needed-message.visible {
+    opacity: 1;
+}
+
+#ghosts-needed-message.hidden {
+    opacity: 0;
+}
+
+/* ==========================================================
    SWITCH
 ========================================================== */
 .switch {
@@ -287,10 +376,60 @@ body.lamp-on #light-overlay {
 
 .white-lamp,
 .yellow-lamp,
-.ghost-img,
 .switch,
 .ghost_counter {
     z-index: 10;
+}
+
+/* -----------------------------
+   SHOP
+----------------------------- */
+.shop-toggle {
+    position: fixed;
+    top: 100px;
+    right: 84px;
+    z-index: 9999;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+}
+
+.shop-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* -----------------------------
+   SHOP BUTTONS
+----------------------------- */
+.shop-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.shop-buttons button {
+    padding: var(--btn-padding);
+    font-size: var(--btn-font-size);
+    border: none;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    background: #4caf50;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.shop-buttons button:hover {
+    background: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 /* ==========================================================

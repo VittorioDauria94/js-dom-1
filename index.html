@@ -24,8 +24,20 @@
             l'interruttore prima che
             il fantasma sia completamente visibile per spaventarlo.<br><br>- Se non clicchi in tempo o se accendi la
             luce
-            prima che sia apparso, hai perso.<br><br>- Se spaventi 5 fantasmi, vinci!<br><br>Clicca Start per iniziare."
+            prima che sia apparso, hai perso.<br><br>- Se spaventi abbastanza fantasmi, vinci!"
         </p>
+        <p><br>Seleziona la difficoltà:</p>
+        <div id="difficulty-selection">
+            <button data-difficulty="easy">Facile</button>
+            <button data-difficulty="medium">Medio</button>
+            <button data-difficulty="hard">Difficile</button>
+            <button data-difficulty="infinite">Infinita</button>
+            <p id="ghosts-needed-message" class="hidden">⚡ Fantasmi da spaventare: 0</p>
+            <p id="difficulty-warning" class="text-warning" style="display:none; text-align:center;">
+                ⚠️ Seleziona una difficoltà prima di iniziare!
+            </p>
+        </div>
+        <p>"Clicca Start per iniziare."</p>
         <button id="start-btn">Start</button>
     </div>
 
@@ -41,9 +53,25 @@
         <button id="lose-restart-btn">Restart</button>
     </div>
 
+    <!-- shop window -->
+    <div class="game-alert shop" id="shop-alert" style="display:none;">
+        <h3>🏪 Shop</h3>
+        <p id="money-display">💰 0</p>
+        <div class="shop-buttons">
+            <button id="buy-slowerGhost">Slower Ghost Apparition (50 💰)</button>
+            <button id="buy-extraGhost">Extra Ghost (100 💰)</button>
+            <button id="buy-doubleClickBonus">Double Click on lamp +5 coin (75 💰)</button>
+            <button id="buy-luckyGhost">Random Golden Ghost (150 💰)</button>
+            <button id="buy-extraLifeGhost">Extra Life (120 💰)</button>
+        </div>
+        <button id="close-shop-btn">Chiudi Shop</button>
+    </div>
+
     <!-- ghost container -->
     <div class="container">
         <img id="ghost" class="ghost-img" src="./img/ghost.svg" alt="image of a ghost">
+        <img id="golden-ghost" class="ghost-img golden-ghost display-none" src="./img/golden-ghost.svg"
+            alt="Golden Ghost">
     </div>
 
     <!-- lamps -->
@@ -58,6 +86,12 @@
 
     <!-- ghosts counter -->
     <span id="counter" class="ghost_counter">Scared Ghosts <span>0</span></span>
+
+    <!-- shop button -->
+    <button id="open-shop-btn" class="shop-toggle">Shop 🏪</button>
+
+    <!-- infinite difficulty window -->
+    <p id="difficulty-message" class="hidden">⚡ Difficoltà aumentata!</p>
 
     <!-- javascript -->
     <script src="./js/function.js"></script>
