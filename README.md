@@ -1,4 +1,4 @@
-# 👻 Lamp Away From Me
+# 👻 Lamp Away
 
 A small horror-themed browser game built with **HTML**, **CSS**, and **JavaScript**.  
 Turn on your lamp at the right moment to scare away ghosts before they fully appear!  
