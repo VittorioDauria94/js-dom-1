@@ -1,72 +1,81 @@
-# 👻 Lamp Away
+## 👻 Lamp Away
 
-A small horror-themed browser game built with **HTML**, **CSS**, and **JavaScript**.  
+A spooky and fun browser game built with **HTML**, **CSS**, and **JavaScript**.  
 Turn on your lamp at the right moment to scare away ghosts before they fully appear!  
-Upgrade your skills in the shop and survive as long as you can!
+Buy upgrades, unlock new abilities, and test how long you can survive the night.  
 
 ---
 
-## 🕹️ Gameplay
-
-- The ghost slowly appears on the screen.
-- Click the **lamp switch** or press the **spacebar** to turn on the light.
-- If you scare the ghost before it fully appears → you earn coins 💰.
-- If you turn on the light too early or too late → you lose 👻.
-- Spend your coins in the **shop** to unlock upgrades.
+### 🌐 Live Demo  
+👉 **Play now:** [https://lampaway.netlify.app](https://lampaway.netlify.app)
 
 ---
 
-## ⚙️ Features
+## 🕹️ Gameplay  
 
-- 🎮 **4 Game Modes:** Easy, Medium, Hard, and Infinite.
-- 💡 **Lamp System:** Toggle by clicking or pressing the spacebar.
-- 👻 **Ghost Mechanics:** Random appearance, fade-in/out animations.
-- 🏪 **Shop System:** Buy upgrades to enhance your gameplay:
-  - *Slower Ghost* – ghosts appear more slowly.
-  - *Extra Ghost* – increases the number of ghosts required to win.
-  - *Double Click Bonus* – earn +5 coins for quick double-clicks.
-  - *Lucky Ghost* – a chance to spawn a golden ghost worth extra money.
-  - *Extra Life* – survive one failed attempt and can be repurchased.
-- 🧠 **Dynamic Difficulty:** Automatically scales in Infinite mode.
-- 💾 **Persistent Data:** Coins and upgrades are saved in Local Storage.
-- 🔦 **Visual Effects:** Smooth lamp lighting transitions and shadow overlays.
+- The ghost slowly fades into the room.  
+- Click the **lamp switch** or press the **spacebar** to turn on the light.  
+- Scare the ghost **before it fully appears** to earn coins 💰.  
+- Turn on the lamp too early or too late and you’ll lose 👻.  
+- Spend coins in the **shop** to unlock upgrades and bonuses.  
 
 ---
 
-## 🧩 Controls
+## ⚙️ Features  
+
+- 🎮 **4 Game Modes:** Easy, Medium, Hard, and Infinite.  
+- 💡 **Lamp System:** Toggle the light by clicking or pressing the spacebar.  
+- 👻 **Ghost Mechanics:** Random appearances, fade-in/out animations.  
+- 🏪 **Shop System:** Unlock new powers:  
+  - *Slower Ghost* — slows ghost appearance time.  
+  - *Extra Ghost* — increases ghosts required to win.  
+  - *Double Click Bonus* — +5 coins for quick double-clicks.  
+  - *Lucky Ghost* — chance to spawn a golden ghost worth more money.  
+  - *Extra Life* — survive one failed attempt and repurchase later.  
+- 🧠 **Dynamic Difficulty:** Auto-scales in infinite mode.  
+- 💾 **Progress Saving:** Coins and upgrades saved in Local Storage.  
+- 🔦 **Visual FX:** Smooth lamp lighting transitions and dark overlay.  
+
+---
+
+## 📱 Mobile Optimization  
+
+- Full responsive layout with fluid scaling (using `clamp()` and `vw/vh` units).  
+- Fixed SVG rendering on mobile:  
+  - Ghosts switched from `<img>` → `<object>` for crisp vector display.  
+  - Added `vector-effect="non-scaling-stroke"` to preserve eyes & mouth.  
+- Improved touch performance and scaling of UI elements.  
+
+---
+
+## 🧩 Controls  
 
 | Action | Key / Input |
 |--------|--------------|
-| Turn lamp ON/OFF | Click switch or press **Spacebar** |
-| Start Game | Click **Start** |
-| Open/Close Shop | Click **Shop 🏪** button |
-| Restart Game | Click **Restart** after win or loss |
+| Toggle lamp ON/OFF | Click the switch or press **Spacebar** |
+| Start game | Click **Start** |
+| Open / Close Shop | Click **Shop 🏪** |
+| Restart game | Click **Restart** after win or loss |
 
 ---
 
-## 🏗️ Tech Stack
+## 🏗️ Tech Stack  
 
-- **HTML5** – Structure and markup  
-- **CSS3** – Styling, animations, and responsive design  
-- **JavaScript (ES6)** – Game logic and DOM manipulation  
+- **HTML5** — structure & layout  
+- **CSS3** — styling, animations, responsive design  
+- **JavaScript (ES6)** — game logic & DOM control  
+- **LocalStorage API** — save progress and upgrades  
 
 ---
 
-## 🗓️ Version History
+## 🧙 Credits  
 
-### v1.2 — **Full Multilingual Support (IT / EN)**
-**Release date:** 2025-10-12
+Developed with 💡 and ☕ by **Vittorio D’Auria**  
+Special thanks to all testers and players who helped perfect *Lamp Away*.  
 
-#### ✨ New Features
-- Added complete **bilingual support** 🇮🇹 / 🇬🇧 (Italian / English).
-- Automatic translation of all game text, including:
-  - **Intro**, **Win**, **Lose**, **Shop**, and **Difficulty** messages.
-  - **Button labels**, **tooltips**, and **ghost counters**.
-  - **“Already purchased”** and **“Buy Extra Life again”** messages in the shop.
-- Language preference saved in **Local Storage** and applied automatically on next visit.
-- Shop buttons and alerts now **refresh dynamically** when changing language.
+---
 
-#### 🛠️ Fixes & Improvements
-- Fixed English text not updating on purchased items (**“✅ Already purchased”**).
-- Unified translation handling via **`lang.js`**.
-- Improved consistency in **`winGame()`** and **`loseGame()`** message logic.
+## 🏁 Version  
+
+**Lamp Away v1.0.0**  
+Stable release — includes full gameplay, responsive design, mobile SVG fix, and persistent shop system.  

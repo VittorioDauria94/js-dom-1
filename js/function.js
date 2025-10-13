@@ -323,3 +323,6 @@ function loseGame() {
 
   if (window.i18n) applyLanguage(window.i18n.getLang());
 }
+
+
+// 👻 Lamp Away — developed by Vittorio D’Auria

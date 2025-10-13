@@ -224,3 +224,5 @@ window.i18n.winMessage = function () {
   const t = translations[lang] || translations.it;
   return t.win;
 };
+
+// 👻 Lamp Away — developed by Vittorio D’Auria

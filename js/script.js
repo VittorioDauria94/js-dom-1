@@ -306,3 +306,5 @@ document.getElementById("buy-extraLifeGhost")?.addEventListener("click", () => {
 
 // Refresh shop button state when page loads
 window.addEventListener("load", updateShopButtons);
+
+// 👻 Lamp Away — developed by Vittorio D’Auria
