@@ -434,6 +434,31 @@ body.lamp-on #light-overlay {
 }
 
 /* ==========================================================
+   KO-FI DONATION BUTTON (Responsive)
+========================================================== */
+.donate-button {
+    position: fixed;
+    bottom: clamp(10px, 3vh, 25px);
+    left: clamp(10px, 3vw, 25px);
+    background: linear-gradient(135deg, #ff5f5f, #ff8080);
+    color: white;
+    padding: clamp(6px, 1vh, 12px) clamp(12px, 2vw, 20px);
+    border-radius: clamp(8px, 1vw, 14px);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    font-family: "Creepster", cursive;
+    text-decoration: none;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.donate-button:hover {
+    background: linear-gradient(135deg, #ff4040, #ff7070);
+    transform: scale(1.05);
+    box-shadow: 0 0 1.5vw rgba(255, 0, 0, 0.6);
+}
+
+/* ==========================================================
    FLUID RESPONSIVE LAYOUT (no breakpoints needed)
 ========================================================== */
 .container {
@@ -553,6 +578,18 @@ body.lamp-on #light-overlay {
 
     .ghost-img {
         height: 60px;
+    }
+
+    .donate-button {
+        top: clamp(20px, 24vh, 63px);
+        right: clamp(10px, 6vw, 24px);
+        bottom: auto;
+        left: auto;
+    }
+
+    .shop-toggle {
+        top: clamp(60px, 12vh, 110px);
+        right: clamp(24px, 0vw, 70px);
     }
 }
 

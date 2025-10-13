@@ -177,6 +177,14 @@ function applyLanguage(lang) {
 
   // Update the buttons on shop
   if (typeof updateShopButtons === "function") updateShopButtons();
+
+  const donateBtn = document.getElementById("donate-button");
+  if (donateBtn) {
+    donateBtn.textContent =
+      lang === "it"
+        ? "☕ Offrimi un caffè su Ko-fi"
+        : "☕ Support Lamp Away on Ko-fi";
+  }
 }
 
 // INIT LANGUAGE
