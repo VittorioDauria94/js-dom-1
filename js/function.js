@@ -255,6 +255,11 @@ function restartGame() {
 
   // Update money and upgrades
   updateMoneyDisplay();
+
+  // Reset difficulty selection state
+  difficulty = "";
+  difficultyButtons.forEach((btn) => btn.classList.remove("selected"));
+  startBtn.disabled = false;
 }
 
 // Player wins

@@ -74,7 +74,8 @@ a {
 /* ==========================================================
    UTILITY CLASSES
 ========================================================== */
-.display-none {
+.display-none,
+.hidden {
     display: none;
 }
 
@@ -304,6 +305,29 @@ body {
     transform: scale(1.1);
 }
 
+#difficulty-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffd966;
+    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 2rem);
+    text-shadow: 0 0 6px #d4af37, 0 0 12px #ffec8b;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#difficulty-message.visible {
+    opacity: 1;
+}
+
+#difficulty-message.hidden {
+    opacity: 0;
+}
+
 /* ==========================================================
    SWITCH (Lamp button)
 ========================================================== */
@@ -421,7 +445,7 @@ body.lamp-on #light-overlay {
 
 /* Ghost image resizes smoothly */
 .ghost-img {
-    height: clamp(40px, 6vh, 80px);
+    height: clamp(50px, 8vh, 110px);
 }
 
 /* Window + alert boxes adapt smoothly */
@@ -520,6 +544,14 @@ body.lamp-on #light-overlay {
 
     #language-switch {
         margin-top: 69px;
+    }
+
+    body.lamp-on .switch {
+        background-color: transparent !important;
+    }
+
+    .ghost-img {
+        height: 60px;
     }
 }
 
