@@ -59,7 +59,7 @@ function showGhostRandomly() {
 
   // Determine if Lucky Ghost appears
   isLuckyGhost = upgradesBought.luckyGhost && Math.random() < 0.1;
-  ghostImg.src = isLuckyGhost ? "./img/golden_ghost.svg" : "./img/ghost.svg";
+  ghostImg.data = isLuckyGhost ? "./img/golden_ghost.svg" : "./img/ghost.svg";
 
   // Random position inside container
   const container = ghostImg.parentElement;

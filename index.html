@@ -124,9 +124,15 @@
 
     <!-- GHOST CONTAINER -->
     <div class="container">
-        <img id="ghost" class="ghost-img" src="./img/ghost.svg" alt="Immagine di un fantasma" />
-        <img id="golden-ghost" class="ghost-img golden-ghost display-none" src="./img/golden_ghost.svg"
-            alt="Fantasma dorato" />
+        <!-- Normal ghost -->
+        <object id="ghost" class="ghost-img" data="./img/ghost.svg" type="image/svg+xml"
+            aria-label="Immagine di un fantasma">
+        </object>
+
+        <!-- Golden ghost -->
+        <object id="golden-ghost" class="ghost-img golden-ghost display-none" data="./img/golden_ghost.svg"
+            type="image/svg+xml" aria-label="Fantasma dorato">
+        </object>
     </div>
 
     <!-- LAMPS -->
