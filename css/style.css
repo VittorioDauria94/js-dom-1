@@ -1,5 +1,5 @@
 /* ==========================================================
-   ROOT VARIABLES
+   ROOT VARIABLES — Responsive Version
 ========================================================== */
 :root {
     /* === BASE COLORS === */
@@ -21,31 +21,31 @@
     --tx-dark: #222;
 
     /* === SHADOW COLORS === */
-    --shadow-red: 0 0 25px rgba(255, 0, 0, 0.6);
-    --shadow-red-strong: 0 0 40px rgba(255, 0, 0, 0.9);
-    --shadow-yellow: 0 0 25px #ffd700, 0 0 50px #fff8a0;
+    --shadow-red: 0 0 2vw rgba(255, 0, 0, 0.6);
+    --shadow-red-strong: 0 0 3vw rgba(255, 0, 0, 0.9);
+    --shadow-yellow: 0 0 2vw #ffd700, 0 0 4vw #fff8a0;
 
-    /* === SPACING === */
-    --pad-xs: 0.5vh 0.5vw;
-    --pad-sm: 1vh 1vw;
-    --pad-md: 3vh 3vw;
-    --pad-lg: 5vh 5vw;
+    /* === SPACING (responsive with clamp) === */
+    --pad-xs: clamp(0.25rem, 0.5vw, 0.75rem);
+    --pad-sm: clamp(0.5rem, 1vw, 1.5rem);
+    --pad-md: clamp(1rem, 2vw, 3rem);
+    --pad-lg: clamp(2rem, 4vw, 5rem);
 
-    --margin-sm: 10px;
-    --margin-md: 20px;
-    --margin-lg: 100px;
+    --margin-sm: clamp(0.5rem, 1vw, 1.5rem);
+    --margin-md: clamp(1rem, 2vw, 3rem);
+    --margin-lg: clamp(3rem, 5vw, 8rem);
 
     /* === BORDER === */
-    --border-red: 2px solid #660000;
-    --border-radius: 10px;
+    --border-red: 0.15vw solid #660000;
+    --border-radius: clamp(5px, 1vw, 20px);
 
     /* === FONT === */
     --font-main: "Creepster", cursive;
 
     /* === BUTTON DIMENSIONS === */
-    --btn-font-size: 18px;
-    --btn-padding: 10px 25px;
-    --btn-radius: 8px;
+    --btn-font-size: clamp(14px, 1vw, 20px);
+    --btn-padding: clamp(6px, 0.8vw, 12px) clamp(12px, 1.5vw, 24px);
+    --btn-radius: clamp(6px, 0.8vw, 12px);
 }
 
 /* ==========================================================
@@ -83,18 +83,6 @@ a {
 }
 
 /* ==========================================================
-   MAIN CONTAINER
-========================================================== */
-.container {
-    position: relative;
-    max-width: 80%;
-    width: 1200px;
-    height: 80vh;
-    margin: var(--margin-lg) auto;
-    z-index: 10;
-}
-
-/* ==========================================================
    MAIN LAYOUT
 ========================================================== */
 body {
@@ -111,22 +99,22 @@ body {
 /* ==========================================================
    LANGUAGE
 ========================================================== */
-
 #language-selector {
-  position: absolute;
-  top: -50px;
-  left: 70px;
-  z-index: 9999;
+    position: absolute;
+    top: clamp(-40px, -6vh, -60px);
+    left: clamp(30px, 5vw, 80px);
+    z-index: 9999;
 }
 
 #language-switch {
-  background: black;
-  color: white;
-  border: 2px solid white;
-  font-family: "Creepster", cursive;
-  font-size: 1rem;
-  padding: 4px 6px;
-  border-radius: 8px;
+    background: black;
+    color: white;
+    border: 0.15vw solid white;
+    font-family: "Creepster", cursive;
+    font-size: clamp(0.8rem, 1vw, 1.1rem);
+    padding: clamp(4px, 0.4vw, 6px) clamp(5px, 0.6vw, 8px);
+    border-radius: clamp(6px, 0.8vw, 10px);
+    transition: all 0.3s ease;
 }
 
 /* ==========================================================
@@ -160,9 +148,9 @@ body {
 .ghost_counter {
     color: var(--tx-red);
     position: absolute;
-    top: -50px;
-    right: 70px;
-    font-size: 20px;
+    top: clamp(-40px, -6vh, -60px);
+    right: clamp(20px, 5vw, 80px);
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
 }
 
 /* ==========================================================
@@ -257,6 +245,29 @@ body {
     transform: scale(1.05);
 }
 
+#ghosts-needed-message {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    color: gold;
+    font-weight: bold;
+    font-size: clamp(0.9rem, 1.5vw, 1.3rem);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+#ghosts-needed-message.visible {
+    opacity: 1;
+}
+
+#ghosts-needed-message.hidden {
+    opacity: 0;
+}
+
 /* ==========================================================
    DIFFICULTY SELECTION
 ========================================================== */
@@ -291,59 +302,6 @@ body {
     color: var(--tx-dark);
     box-shadow: var(--shadow-yellow);
     transform: scale(1.1);
-}
-
-/* Tooltip showing number of ghosts required */
-#ghosts-needed-message {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 0.5rem;
-    color: gold;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 1000;
-}
-
-#ghosts-needed-message.visible {
-    opacity: 1;
-}
-
-#ghosts-needed-message.hidden {
-    opacity: 0;
-}
-
-/* Difficulty increase message */
-#difficulty-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: gold;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: center;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    background: rgba(0, 0, 0, 0.6);
-    text-shadow: 0 0 1px gold, 0 0 2px gold;
-}
-
-#difficulty-message.visible {
-    opacity: 1;
-    transform: translate(-50%, -50%) translateY(-20px);
-}
-
-#difficulty-message.hidden {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateY(0);
 }
 
 /* ==========================================================
@@ -406,8 +364,8 @@ body.lamp-on #light-overlay {
 ========================================================== */
 .shop-toggle {
     position: fixed;
-    top: 100px;
-    right: 84px;
+    top: clamp(60px, 10vh, 100px);
+    right: clamp(40px, 5vw, 80px);
     z-index: 9999;
     background-color: #4caf50;
     color: white;
@@ -451,75 +409,128 @@ body.lamp-on #light-overlay {
 }
 
 /* ==========================================================
-   RESPONSIVE MEDIA QUERIES
+   FLUID RESPONSIVE LAYOUT (no breakpoints needed)
 ========================================================== */
+.container {
+    position: relative;
+    width: min(90vw, 1000px);
+    height: clamp(50vh, 60vh, 70vh);
+    margin: clamp(2rem, 8vh, 6rem) auto;
+    z-index: 10;
+}
+
+/* Ghost image resizes smoothly */
+.ghost-img {
+    height: clamp(40px, 6vh, 80px);
+}
+
+/* Window + alert boxes adapt smoothly */
+.window-alert,
+.game-alert {
+    padding: var(--pad-md);
+    font-size: clamp(1.2vh, 1.5vw, 2vh);
+}
+
+/* Buttons scale naturally */
+#start-btn,
+.game-alert button {
+    padding: var(--pad-sm);
+    font-size: clamp(1.2vh, 1.6vw, 2vh);
+    border-radius: var(--btn-radius);
+}
+
+
+/* ==========================================================
+   LAMP AND SWITCH RESPONSIVENESS
+========================================================== */
+
+/* Desktop / large screens */
+.white-lamp,
+.yellow-lamp {
+    position: absolute;
+    top: -215px;
+    transform: rotate(180deg);
+}
+
+.white-lamp {
+    right: 30vw;
+}
+
+.yellow-lamp {
+    right: 28vw;
+}
+
+/* Medium screens (tablets) */
 @media (max-width: 1024px) {
-    .container {
-        max-width: 90%;
-        height: 60vh;
-        margin: 80px auto;
+    .white-lamp {
+        width: 200px;
+        top: -190px;
+        right: 35vw;
     }
 
-    .white-lamp,
     .yellow-lamp {
-        width: 138px;
-        top: -137px;
-        right: 25vw;
-    }
-
-    .ghost-img {
-        height: 60px;
+        width: 200px;
+        top: -190px;
+        right: 32vw;
     }
 }
 
-@media (max-width: 902px) {
+/* Small screens (mobile landscape) */
+@media (max-width: 768px) {
+    .white-lamp {
+        width: 180px;
+        top: -170px;
+        right: 40vw;
+    }
 
-    .white-lamp,
     .yellow-lamp {
-        width: 123px;
-        top: -133px;
-        right: 20vw;
+        width: 180px;
+        top: -170px;
+        right: 36vw;
     }
 
-    .ghost-img {
-        height: 50px;
-    }
-
-    .window-alert,
-    .game-alert {
-        padding: var(--pad-md);
-        font-size: 1.8vh;
-    }
-
-    #start-btn,
-    .game-alert button {
-        padding: var(--pad-sm);
-        font-size: 1.8vh;
+    .switch {
+        right: 88vw;
     }
 }
 
+/* Extra small screens (mobile portrait) */
 @media (max-width: 480px) {
+    .white-lamp {
+        width: 120px;
+        top: -132px;
+        right: 58vw;
+    }
 
-    .white-lamp,
     .yellow-lamp {
-        width: 91px;
-        top: -118px;
-        right: 15vw;
+        width: 120px;
+        top: -132px;
+        right: 54vw;
     }
 
-    .ghost-img {
-        height: 40px;
+    .switch {
+        right: 44vw;
+        top: 77vh;
+        transform: rotate(90deg);
     }
 
-    .window-alert,
-    .game-alert {
-        padding: var(--pad-sm);
-        font-size: 1.5vh;
+    #language-switch {
+        margin-top: 69px;
+    }
+}
+
+/* ==========================================================
+   FIX for very small screens (≤400px)
+========================================================== */
+@media (max-width: 400px) {
+
+    .container {
+        height: 65vh;
     }
 
-    #start-btn,
-    .game-alert button {
-        padding: var(--pad-xs);
-        font-size: 1.5vh;
+    #difficulty-selection {
+        flex-direction: column;
+        gap: 10px;
     }
+
 }
