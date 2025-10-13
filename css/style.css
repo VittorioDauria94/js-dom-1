@@ -473,6 +473,10 @@ body.lamp-on #light-overlay {
         top: -190px;
         right: 32vw;
     }
+
+    .switch {
+        right: 88vw;
+    }
 }
 
 /* Small screens (mobile landscape) */
@@ -495,7 +499,7 @@ body.lamp-on #light-overlay {
 }
 
 /* Extra small screens (mobile portrait) */
-@media (max-width: 480px) {
+@media (max-width: 567px) {
     .white-lamp {
         width: 120px;
         top: -132px;
@@ -510,7 +514,7 @@ body.lamp-on #light-overlay {
 
     .switch {
         right: 44vw;
-        top: 77vh;
+        top: 65vh;
         transform: rotate(90deg);
     }
 
@@ -522,7 +526,7 @@ body.lamp-on #light-overlay {
 /* ==========================================================
    FIX for very small screens (≤400px)
 ========================================================== */
-@media (max-width: 400px) {
+@media (max-width: 380px) {
 
     .container {
         height: 65vh;
@@ -531,6 +535,11 @@ body.lamp-on #light-overlay {
     #difficulty-selection {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .switch {
+        right: 42vw;
+        top: 70vh;
     }
 
 }
